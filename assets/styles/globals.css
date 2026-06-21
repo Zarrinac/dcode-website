@@ -1,0 +1,100 @@
+/* Global design tokens and Tailwind base import for the standalone D'code site.
+   The whole site themes off the D'code black/red palette; individual /tvs sections
+   further scope their own tokens via DCODE_THEME_STYLE. */
+@import 'tailwindcss';
+
+:root {
+  --dcode-black: #0b0b0b;
+  --dcode-red: #e30613;
+  --dcode-surface: #0b0b0b;
+  --dcode-surface-muted: #161616;
+  --dcode-border: rgba(255, 255, 255, 0.1);
+  --dcode-text: #ffffff;
+  --dcode-text-muted: #b3b3b3;
+
+  --background-color: var(--dcode-black);
+  --default-black-font: var(--dcode-text);
+  --default-white-font: #ffffff;
+}
+
+@theme {
+  --breakpoint-xs: 30rem; /* 480 px */
+  --breakpoint-2xs: 20rem; /* 320 px */
+  --breakpoint-3xl: 90.0625rem; /* 1440 px */
+  --breakpoint-4xl: 108rem; /* 1728 px */
+  --breakpoint-5xl: 120rem; /* 1920 px */
+}
+
+@font-face {
+  font-family: 'IRANSansXV';
+  src:
+    url('/fonts/IRANSansXV.woff2') format('woff2-variations'),
+    url('/fonts/IRANSansXV.woff') format('woff');
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+  font-variation-settings: 'dots' 0;
+}
+
+@font-face {
+  font-family: 'Dcode Sans';
+  src: url('/fonts/Hisense Sans Alfabet-normal-400-100.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dcode Sans';
+  src: url('/fonts/Hisense Sans Alfabet Medium-normal-500-100.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dcode Sans';
+  src: url('/fonts/Hisense Sans Alfabet-normal-700-100.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dcode Sans';
+  src: url('/fonts/Hisense-Sans-Alfabet-Bold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-feature-settings: 'kern';
+  font-synthesis: none;
+  background-color: var(--background-color);
+  color: var(--default-black-font);
+  accent-color: var(--dcode-red);
+  overflow-x: hidden;
+}
+
+html[lang='en'] body {
+  font-family: 'Dcode Sans', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+html[lang='fa'] body {
+  font-family: 'IRANSansXV', 'Dcode Sans', 'Segoe UI', Tahoma, sans-serif;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

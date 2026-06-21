@@ -1,0 +1,43 @@
+{
+  "Shell": {
+    "skipToContent": "Skip to content",
+    "home": "Home",
+    "tvs": "TVs",
+    "localeLabel": "Language",
+    "localeFa": "فارسی",
+    "localeEn": "English",
+    "footerTagline": "Smart living, decoded.",
+    "footerRights": "© {year} D'code. All rights reserved."
+  },
+  "DcodePage": {
+    "landing": {
+      "metaTitle": "D'code — 4K Smart LED TVs",
+      "metaDescription": "D'code — the R6D 4K UHD Android 11 smart LED TV line in 55, 65, and 75 inches.",
+      "tagline": "Smart living, decoded.",
+      "description": "D'code pairs clean, high-end design with the essentials done right — starting with the R6D 4K UHD Android 11 LED TV line.",
+      "exploreTvs": "Explore D'code TVs",
+      "productsHeading": "Products",
+      "tvsCardTitle": "D'code TVs",
+      "tvsCardDescription": "4K UHD Android 11 smart LED TVs — the R6D line in 55, 65 and 75 inches.",
+      "explore": "Explore"
+    },
+    "tvs": {
+      "metaTitle": "D'code TVs — 4K Smart LED",
+      "metaDescription": "D'code 4K UHD Android 11 smart LED TVs — the R6D line in 55, 65, and 75 inches.",
+      "title": "D'code TVs",
+      "tagline": "4K UHD Android 11 smart LED TVs.",
+      "viewProduct": "View product"
+    },
+    "detail": {
+      "selectSize": "Select size",
+      "model": "Model",
+      "specifications": "Specifications",
+      "keyFeatures": "Key features",
+      "gallery": "Gallery",
+      "dimensionsWithStand": "Dimensions (with stand)",
+      "dimensionsWithoutStand": "Dimensions (without stand)",
+      "netWeight": "Net weight",
+      "watchVideo": "Watch video"
+    }
+  }
+}

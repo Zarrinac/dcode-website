@@ -1,0 +1,43 @@
+{
+  "Shell": {
+    "skipToContent": "رفتن به محتوا",
+    "home": "خانه",
+    "tvs": "تلویزیون‌ها",
+    "localeLabel": "زبان",
+    "localeFa": "فارسی",
+    "localeEn": "English",
+    "footerTagline": "زندگی هوشمند، رمزگشایی‌شده.",
+    "footerRights": "© {year} D'code. تمامی حقوق محفوظ است."
+  },
+  "DcodePage": {
+    "landing": {
+      "metaTitle": "دیکد D'code — تلویزیون‌های هوشمند LED 4K",
+      "metaDescription": "دیکد (D'code) — خط تولید تلویزیون هوشمند LED 4K UHD مدل R6D با اندروید ۱۱ در سه سایز ۵۵، ۶۵ و ۷۵ اینچ.",
+      "tagline": "زندگی هوشمند، رمزگشایی‌شده.",
+      "description": "دیکد (D'code) طراحی تمیز و High-End را با اصول درست ترکیب می‌کند؛ آغاز با خط تولید تلویزیون LED 4K UHD اندروید ۱۱ مدل R6D.",
+      "exploreTvs": "مشاهده تلویزیون‌های دیکد D'code",
+      "productsHeading": "محصولات",
+      "tvsCardTitle": "تلویزیون‌های دیکد D'code",
+      "tvsCardDescription": "تلویزیون‌های هوشمند LED 4K UHD اندروید ۱۱ — خط تولید R6D در سه سایز ۵۵، ۶۵ و ۷۵ اینچ.",
+      "explore": "مشاهده"
+    },
+    "tvs": {
+      "metaTitle": "تلویزیون دیکد D'code — هوشمند LED 4K",
+      "metaDescription": "تلویزیون‌های هوشمند LED 4K UHD دیکد (D'code) با اندروید ۱۱ — خط تولید R6D در سه سایز ۵۵، ۶۵ و ۷۵ اینچ.",
+      "title": "تلویزیون‌های دیکد D'code",
+      "tagline": "تلویزیون‌های هوشمند LED 4K UHD با اندروید ۱۱.",
+      "viewProduct": "مشاهده محصول"
+    },
+    "detail": {
+      "selectSize": "انتخاب سایز",
+      "model": "مدل",
+      "specifications": "مشخصات فنی",
+      "keyFeatures": "ویژگی‌های کلیدی",
+      "gallery": "گالری تصاویر",
+      "dimensionsWithStand": "ابعاد (با پایه)",
+      "dimensionsWithoutStand": "ابعاد (بدون پایه)",
+      "netWeight": "وزن خالص",
+      "watchVideo": "تماشای ویدیو"
+    }
+  }
+}

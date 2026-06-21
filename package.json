@@ -1,0 +1,63 @@
+{
+  "name": "dcode",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3002",
+    "build": "next build",
+    "postinstall": "prisma generate",
+    "start": "next start",
+    "lint": "eslint",
+    "format": "prettier --write .",
+    "prepare": "husky",
+    "db:migrate": "prisma migrate dev --name init",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "node scripts/seed-all.mjs",
+    "db:seed:dcode": "tsx scripts/seed-dcode.ts"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "next": "^16.2.7",
+    "next-intl": "^4.13.0",
+    "pg": "^8.21.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "react-icons": "^5.6.0",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^16.2.7",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^25",
+    "@types/pg": "^8.20.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@typescript-eslint/eslint-plugin": "^8.60.1",
+    "@typescript-eslint/parser": "^8.60.1",
+    "autoprefixer": "^10.5.0",
+    "dotenv": "^17.4.2",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "16.2.7",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "globals": "^17.6.0",
+    "husky": "^9.1.7",
+    "jiti": "^2.7.0",
+    "lint-staged": "^16.4.0",
+    "postcss": "^8.5.15",
+    "prettier": "^3.8.3",
+    "prisma": "^7.8.0",
+    "tailwindcss": "^4",
+    "tsx": "^4.22.4",
+    "typescript": "^6",
+    "typescript-eslint": "^8.60.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*": "prettier --write --ignore-unknown"
+  }
+}
