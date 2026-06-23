@@ -1,10 +1,11 @@
 import type { MetadataRoute } from 'next';
 import { getDcodeProducts } from '@/lib/dcode/source';
+import { DCODE_CATEGORY_ORDER, categoryPath, categorySlug } from '@/lib/dcode/categories';
 import { routing } from '@/i18n/routing';
 import { SITE_CONTENT_LAST_MODIFIED, SITE_URL, getLocalizedPath } from '@/lib/seo/site';
 
-// Native sitemap: home + /tvs + each product detail, per locale, with hreflang
-// language alternates so Google sees the fa/en pairing.
+// Native sitemap: home + each product family list + every product detail, per locale,
+// with hreflang language alternates so Google sees the fa/en pairing.
 
 const buildAlternates = (path: string) => {
   const languages = routing.locales.reduce<Record<string, string>>((acc, locale) => {
@@ -17,7 +18,12 @@ const buildAlternates = (path: string) => {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await getDcodeProducts();
 
-  const paths = ['/', '/tvs', ...products.map((product) => `/tvs/${product.id}`)];
+  // '/', then each family list, then each product detail under its family slug.
+  const paths = [
+    '/',
+    ...DCODE_CATEGORY_ORDER.map((category) => categoryPath(category)),
+    ...products.map((product) => `/${categorySlug(product.category)}/${product.id}`),
+  ];
 
   const entries: MetadataRoute.Sitemap = [];
   for (const path of paths) {

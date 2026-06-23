@@ -1,6 +1,7 @@
-// D'code product catalog schema. D'code ships one product per line with size
-// `variants`, each variant carrying its own SKU and box dimensions. Today only the
-// LED family exists. Localized copy is stored per product in DcodeProductCopy.
+// D'code product catalog schema. D'code ships two families today — LED TVs (R6D)
+// and split air conditioners (DTEC30). The model is family-agnostic: shared columns
+// plus a localized `attributes` spec sheet (Json) that works for any category. Each
+// product has size/capacity `variants` (a SKU each) and localized `copies`.
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,30 +11,24 @@ datasource db {
 }
 
 enum DcodeCategory {
-  LED
+  TV
+  AC
 }
 
 model DcodeProduct {
   id             String        @id
   slug           String        @unique
   brand          String        @default("dcode")
-  category       DcodeCategory @default(LED)
+  category       DcodeCategory @default(TV)
   series         String
-  panel          String
-  resolution     String
-  os             String
-  storage        String
-  viewingAngle   String
-  tuner          String
-  sound          String
-  connectivity   String[]      @default([])
-  warrantyMonths Int
+  warrantyMonths Int?
   extras         String[]      @default([])
   heroImageUrl   String
   heroVideoUrl   String?
   remoteImageUrl String?
   gallery        Json?
   featureCards   Json?
+  attributes     Json?
   remotes        Json?
   specs          Json?
   createdAt      DateTime      @default(now())
@@ -46,15 +41,16 @@ model DcodeProduct {
 }
 
 model DcodeVariant {
-  sku                    String @id
+  sku                    String  @id
   productId              String
   size                   String
-  diagonalInch           Int
+  diagonalInch           Int?
+  capacityBtu            Int?
   imageUrl               String
-  dimensionsWithoutStand String
-  dimensionsWithStand    String
-  netWeight              String
-  sortOrder              Int    @default(0)
+  dimensionsWithoutStand String?
+  dimensionsWithStand    String?
+  netWeight              String?
+  sortOrder              Int     @default(0)
 
   product DcodeProduct @relation(fields: [productId], references: [id], onDelete: Cascade)
 

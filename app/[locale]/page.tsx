@@ -1,15 +1,17 @@
 import type { Metadata } from 'next';
 import { getLocale, getTranslations, setRequestLocale } from 'next-intl/server';
-import Image from 'next/image';
-import Link from 'next/link';
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
+import { HiSparkles, HiCpuChip, HiShieldCheck } from 'react-icons/hi2';
 import JsonLd from '@/components/seo/JsonLd';
-import DcodeLogo from '@/components/dcode/DcodeLogo';
-import { DCODE_BLEED_CLASS, DCODE_THEME_STYLE } from '@/components/dcode/dcodeTheme';
-import { getDcodeProducts } from '@/lib/dcode/source';
+import DcodeSection from '@/components/dcode/DcodeSection';
+import HeroDepthGrid from '@/components/dcode/heroes/HeroDepthGrid';
+import ProductFamilyCard from '@/components/dcode/ProductFamilyCard';
+import SectionHeading from '@/components/dcode/SectionHeading';
+import { Stagger, StaggerItem } from '@/components/motion/Stagger';
+import { getDcodeProductsByCategory } from '@/lib/dcode/source';
+import { categoryHref } from '@/lib/dcode/categories';
 import { DCODE_BRAND } from '@/lib/dcode/brand';
 import type { Locale } from '@/i18n/routing';
-import { getLanguageAlternates, getLocaleLanguage, SITE_URL } from '@/lib/seo/site';
+import { getLanguageAlternates, getLocaleLanguage, SITE_URL, toAbsoluteUrl } from '@/lib/seo/site';
 
 // ISR: cache the brand landing (and its DB-backed product fetch), refresh hourly.
 export const revalidate = 3600;
@@ -50,98 +52,121 @@ export default async function DcodeLandingPage({ params }: PageProps) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'DcodePage' });
 
-  const products = await getDcodeProducts();
-  const featured = products[0];
-
-  const Chevron = locale === 'fa' ? HiChevronLeft : HiChevronRight;
+  const [tvs, acs] = await Promise.all([
+    getDcodeProductsByCategory('tv'),
+    getDcodeProductsByCategory('ac'),
+  ]);
+  const featuredTv = tvs[0];
+  const featuredAc = acs[0];
 
   const brandSchema = {
     '@context': 'https://schema.org',
     '@type': 'Brand',
     name: DCODE_BRAND.name,
     url: `${SITE_URL}/${locale}`,
+    logo: toAbsoluteUrl(DCODE_BRAND.logoOnDark),
     inLanguage: getLocaleLanguage(locale),
-    slogan: t('landing.tagline'),
+    slogan: t('landing.heroTitle'),
   };
+
+  const whyItems = [
+    {
+      icon: HiSparkles,
+      title: t('landing.whyDesignTitle'),
+      description: t('landing.whyDesignDescription'),
+    },
+    {
+      icon: HiCpuChip,
+      title: t('landing.whySmartTitle'),
+      description: t('landing.whySmartDescription'),
+    },
+    {
+      icon: HiShieldCheck,
+      title: t('landing.whySupportTitle'),
+      description: t('landing.whySupportDescription'),
+    },
+  ];
 
   return (
     <div className="pb-16">
       <JsonLd data={brandSchema} />
-      <div
-        style={DCODE_THEME_STYLE}
-        className={`${DCODE_BLEED_CLASS} bg-(--dcode-black) text-(--dcode-text)`}
-        dir={locale === 'fa' ? 'rtl' : 'ltr'}
-      >
-        <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 lg:px-10 lg:py-10">
-          {/* Hero */}
-          <section className="grid items-center gap-10 lg:grid-cols-2">
-            <div className="space-y-6">
-              <DcodeLogo className="h-12 w-auto" priority />
-              <h1 className="text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
-                {t('landing.tagline')}
-              </h1>
-              <p className="text-base leading-relaxed text-(--dcode-text-muted) sm:text-lg">
-                {t('landing.description')}
-              </p>
-              <Link
-                href={`/${locale}/tvs`}
-                className="inline-flex items-center gap-2 rounded-full bg-(--dcode-red) px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--dcode-red)"
-              >
-                {t('landing.exploreTvs')}
-                <Chevron aria-hidden />
-              </Link>
-            </div>
 
-            {featured && (
-              <div className="relative aspect-4/3 w-full">
-                <Image
-                  src={featured.heroImage}
-                  alt={featured.copy[locale].name}
-                  fill
-                  priority
-                  className="object-contain"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+      {/* Animated brand hero — one big full-width banner, no products/CTAs.
+          "Depth Grid × Decoder": a one-point-perspective wireframe that resolves
+          brighter under a cursor-tracked red light (the brand's "decoding" idea). */}
+      <HeroDepthGrid
+        locale={locale}
+        title={t('landing.heroTitle')}
+        subtitle={t('landing.heroSubtitle')}
+      />
+
+      <DcodeSection locale={locale} className="py-12 lg:py-20">
+        {/* Product categories */}
+        <section>
+          <SectionHeading
+            eyebrow={t('landing.familiesEyebrow')}
+            title={t('landing.familiesTitle')}
+            description={t('landing.familiesDescription')}
+          />
+          <Stagger className="mt-10 grid gap-6 md:grid-cols-2">
+            {featuredTv && (
+              <StaggerItem>
+                <ProductFamilyCard
+                  href={categoryHref(locale, 'tv')}
+                  eyebrow={t('landing.tvCardEyebrow')}
+                  title={t('landing.tvCardTitle')}
+                  description={t('landing.tvCardDescription')}
+                  image={featuredTv.heroImage}
+                  imageAlt={featuredTv.copy[locale].name}
+                  cta={t('landing.exploreCta')}
                 />
-              </div>
+              </StaggerItem>
             )}
-          </section>
+            {featuredAc && (
+              <StaggerItem>
+                <ProductFamilyCard
+                  href={categoryHref(locale, 'ac')}
+                  eyebrow={t('landing.acCardEyebrow')}
+                  title={t('landing.acCardTitle')}
+                  description={t('landing.acCardDescription')}
+                  image={featuredAc.heroImage}
+                  imageAlt={featuredAc.copy[locale].name}
+                  cta={t('landing.exploreCta')}
+                  light
+                />
+              </StaggerItem>
+            )}
+          </Stagger>
+        </section>
 
-          {/* Products */}
-          <section className="mt-16">
-            <h2 className="text-2xl font-bold">{t('landing.productsHeading')}</h2>
-            <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <Link
-                href={`/${locale}/tvs`}
-                className="group flex flex-col overflow-hidden rounded-3xl border border-(--dcode-border) bg-(--dcode-surface-muted) transition-colors hover:border-(--dcode-red) focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--dcode-red)"
-              >
-                {featured && (
-                  <div className="relative aspect-4/3 w-full bg-(--dcode-black)">
-                    <Image
-                      src={featured.heroImage}
-                      alt={t('landing.tvsCardTitle')}
-                      fill
-                      className="object-contain transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 1024px) 100vw, 33vw"
-                    />
-                  </div>
-                )}
-                <div className="flex flex-1 flex-col gap-1.5 p-5">
-                  <h3 className="text-lg font-bold text-(--dcode-text)">
-                    {t('landing.tvsCardTitle')}
-                  </h3>
-                  <p className="text-sm text-(--dcode-text-muted)">
-                    {t('landing.tvsCardDescription')}
-                  </p>
-                  <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-(--dcode-red)">
-                    {t('landing.explore')}
-                    <Chevron aria-hidden />
+        {/* Why D'code */}
+        <section className="mt-24 lg:mt-32">
+          <SectionHeading
+            eyebrow={t('landing.whyEyebrow')}
+            title={t('landing.whyTitle')}
+            description={t('landing.whyDescription')}
+          />
+          <Stagger className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {whyItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <StaggerItem
+                  key={item.title}
+                  className="flex h-full flex-col gap-4 rounded-3xl border border-(--dcode-border) bg-(--dcode-surface) p-7 transition-colors hover:border-(--dcode-border-strong)"
+                >
+                  <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-(--dcode-red)/10 text-(--dcode-red)">
+                    <Icon className="size-6" aria-hidden />
                   </span>
-                </div>
-              </Link>
-            </div>
-          </section>
-        </div>
-      </div>
+                  <h3 className="text-lg font-bold text-(--dcode-text)">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-(--dcode-text-muted)">
+                    {item.description}
+                  </p>
+                </StaggerItem>
+              );
+            })}
+          </Stagger>
+        </section>
+      </DcodeSection>
     </div>
   );
 }

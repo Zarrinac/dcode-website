@@ -12,8 +12,12 @@ Stack: Next.js 16 App Router · React 19 · TypeScript 6 · PostgreSQL + Prisma 
 > so it can run alongside the Hisense (`3000`) and zarrinac (`3001`) sites locally.
 >
 > **Routing note:** in this standalone project the D'code landing is the site root
-> (`/[locale]`) — the `/dcode` path prefix from the parent repo is dropped. The TV
-> list is `/[locale]/tvs` and detail is `/[locale]/tvs/[productId]`.
+> (`/[locale]`) — the `/dcode` path prefix from the parent repo is dropped. D'code
+> ships **two product families**, each its own sibling section: TVs
+> (`/[locale]/tvs` + `/[locale]/tvs/[productId]`) and air conditioners
+> (`/[locale]/air-conditioners` + `/[locale]/air-conditioners/[productId]`). Section
+> slugs live in `lib/dcode/categories.ts` (`tv` → `tvs`, `ac` → `air-conditioners`);
+> a detail page 404s when the product's category doesn't match its section.
 
 ## Primary Objective: SEO
 
@@ -21,7 +25,7 @@ SEO efficiency is the top priority, same as the parent project. When touching pa
 
 - Preserve/extend per-page `generateMetadata` (title, description, `alternates.canonical`, `alternates.languages` hreflang).
 - Keep one — and only one — `<h1>` per page; semantic heading order (h1 → h2 → h3).
-- Maintain JSON-LD: `Organization` + `WebSite` (global, in `components/seo/StructuredData.tsx`), `Brand` (landing), `CollectionPage`/`ItemList` (TV list), `WebPage` + `about` `Thing` (detail), `BreadcrumbList`.
+- Maintain JSON-LD: `Organization` + `WebSite` (global, in `components/seo/StructuredData.tsx`), `Brand` (landing), `CollectionPage`/`ItemList` (each family list), `WebPage` + `about` `Thing` (detail), `BreadcrumbList`. The list/detail JSON-LD builders are centralized in `lib/dcode/jsonld.ts` — reuse them for both families.
 - **No `offers`/`Product` schema:** no prices are published, so the detail page uses `WebPage` + `about` `Thing` — NOT a schema.org `Product`. A price-less `Product` triggers Google's "Either offers, review, or aggregateRating should be specified" warning. Don't add a price-less Offer.
 - Every `<Image>` needs descriptive, localized `alt`. Hero/LCP images use `priority`.
 - Both `fa` and `en` must stay in sync — hreflang depends on it.
@@ -30,17 +34,18 @@ SEO efficiency is the top priority, same as the parent project. When touching pa
 
 ## Commands
 
-| Command                 | Purpose                                          |
-| ----------------------- | ------------------------------------------------ |
-| `npm run dev`           | Dev server at **http://localhost:3002**          |
-| `npm run build`         | Production build                                 |
-| `npm run start`         | Serve production build                           |
-| `npm run lint`          | ESLint check                                     |
-| `npm run format`        | Prettier format                                  |
-| `npm run db:migrate`    | Apply Prisma migrations (dev)                    |
-| `npm run db:deploy`     | Apply migrations (production)                    |
-| `npm run db:seed`       | Seed D'code catalog (via `scripts/seed-all.mjs`) |
-| `npm run db:seed:dcode` | Seed D'code catalog only                         |
+| Command                  | Purpose                                          |
+| ------------------------ | ------------------------------------------------ |
+| `npm run dev`            | Dev server at **http://localhost:3002**          |
+| `npm run build`          | Production build                                 |
+| `npm run start`          | Serve production build                           |
+| `npm run lint`           | ESLint check                                     |
+| `npm run format`         | Prettier format                                  |
+| `npm run db:migrate`     | Apply Prisma migrations (dev)                    |
+| `npm run db:deploy`      | Apply migrations (production)                    |
+| `npm run db:seed`        | Seed D'code catalog (via `scripts/seed-all.mjs`) |
+| `npm run db:seed:dcode`  | Seed D'code catalog only                         |
+| `npm run media:optimize` | Rebuild the optimized `../media` mirror (sharp)  |
 
 ## Architecture
 
@@ -48,20 +53,28 @@ SEO efficiency is the top priority, same as the parent project. When touching pa
 
 - All public pages live under `app/[locale]/` — locales: `fa` (default, RTL), `en` (LTR)
 - Root `app/page.tsx` redirects to `/fa`
-- `app/[locale]/page.tsx` — brand landing (the site home)
-- `app/[locale]/tvs/page.tsx` — TV list
-- `app/[locale]/tvs/[productId]/page.tsx` — TV detail
+- `app/[locale]/page.tsx` — brand landing (the site home); its full-bleed animated hero is `components/dcode/heroes/HeroDepthGrid.tsx` ("Depth Grid × Decoder", shared scaffolding in `heroShared.tsx`) — product-free by design, single `<h1>`, with `prefers-reduced-motion` fallbacks
+- `app/[locale]/tvs/page.tsx` + `tvs/[productId]/page.tsx` — TV list + detail
+- `app/[locale]/air-conditioners/page.tsx` + `air-conditioners/[productId]/page.tsx` — AC list + detail
+- List/detail pages are thin wrappers around shared views (`components/dcode/ProductListView.tsx`, `ProductDetailView.tsx`) that work for both families — keep them generic, don't fork per category.
 - All public pages are ISR (`revalidate = 3600`) with their own `generateMetadata` + JSON-LD.
-- Page chrome (header + footer) is the slim D'code-branded shell in `components/shell/`.
+- Page chrome (header + footer) is the slim D'code-branded shell in `components/shell/` (sticky header with desktop `MainNav` + `MobileNav` sheet).
 
 ### Data Sources (DB-first → static fallback)
 
 The app runs without a database. If `DATABASE_URL` is absent, `lib/dcode/source.ts`
 falls back to the bundled static catalog.
 
-| Data       | Primary                                                   | Fallback                                       |
-| ---------- | --------------------------------------------------------- | ---------------------------------------------- |
-| D'code TVs | DB (`DcodeProduct` + `DcodeVariant` + `DcodeProductCopy`) | `DCODE_PRODUCTS` in `content/DcodeProducts.ts` |
+| Data            | Primary                                                   | Fallback                                       |
+| --------------- | --------------------------------------------------------- | ---------------------------------------------- |
+| D'code products | DB (`DcodeProduct` + `DcodeVariant` + `DcodeProductCopy`) | `DCODE_PRODUCTS` in `content/DcodeProducts.ts` |
+
+The product model is **family-agnostic** (`types/dcode.ts`): `category: 'tv' | 'ac'`
+plus a localized `attributes` spec sheet (`{ label, value }` per locale) instead of
+TV-specific scalar columns. `lib/dcode/source.ts` exposes `getDcodeProducts`,
+`getDcodeProductsByCategory(category)`, and `getDcodeProductById`. After changing the
+Prisma schema, run `npx prisma generate` (and `npm run db:migrate` when a DB is
+configured — the app otherwise runs on the static fallback).
 
 Content source is toggled by `NEXT_PUBLIC_CONTENT_SOURCE` (`"local"` or `"remote"`).
 
@@ -75,17 +88,17 @@ Content source is toggled by `NEXT_PUBLIC_CONTENT_SOURCE` (`"local"` or `"remote
 
 ### Key Directories
 
-| Path          | Purpose                                                   |
-| ------------- | --------------------------------------------------------- |
-| `app/`        | Pages, layouts, sitemap/robots generators                 |
-| `components/` | `dcode/` (brand UI), `shell/` (header/footer), `seo/`     |
-| `lib/`        | DB client, media URLs, SEO helpers, `dcode/` data + brand |
-| `content/`    | Static fallback catalog (`DcodeProducts.ts`)              |
-| `messages/`   | Translation dictionaries — `fa.json` and `en.json`        |
-| `prisma/`     | Prisma schema (D'code models) and migration history       |
-| `types/`      | Shared TypeScript types (`dcode.ts`, `tv.ts`)             |
-| `i18n/`       | next-intl routing config and request helpers              |
-| `scripts/`    | DB seed scripts                                           |
+| Path          | Purpose                                                      |
+| ------------- | ------------------------------------------------------------ |
+| `app/`        | Pages, layouts, sitemap/robots generators                    |
+| `components/` | `dcode/` (brand UI + `heroes/`), `shell/`, `seo/`, `motion/` |
+| `lib/`        | DB client, media URLs, SEO helpers, `dcode/` data + brand    |
+| `content/`    | Static fallback catalog (`DcodeProducts.ts`)                 |
+| `messages/`   | Translation dictionaries — `fa.json` and `en.json`           |
+| `prisma/`     | Prisma schema (D'code models) and migration history          |
+| `types/`      | Shared TypeScript types (`dcode.ts`, `tv.ts`)                |
+| `i18n/`       | next-intl routing config and request helpers                 |
+| `scripts/`    | DB seed scripts                                              |
 
 ### Localization
 
@@ -152,10 +165,20 @@ Copy `.env.example` → `.env.local` to get started.
 
 ## Media Workflow
 
-Media lives **outside git** in the sibling `../media` folder (staging for server
-promotion), mirroring the zarrinac pattern. `public/dcode` stays committed so local
-dev (`NEXT_PUBLIC_CONTENT_SOURCE=local`) works out of the box; the heavy renders are
-served from `NEXT_PUBLIC_MEDIA_BASE_URL` in production.
+Media is **not committed to git** (mirroring hisense-ir.com / zarrinac.com). Heavy
+renders, video, logos, and datasheets under `public/dcode/**` and `public/logos/*`
+are gitignored — they live locally under `public/` for dev and are promoted to the
+server from the sibling `../media` folder, served from `NEXT_PUBLIC_MEDIA_BASE_URL`
+in production. Only the tiny SVG logo and root favicons/manifest stay committed, so
+the app still builds without the media present.
+
+`npm run media:optimize` (→ `scripts/optimize-media.mjs`, sharp) rebuilds the
+`../media` mirror: raster images are re-encoded + downscaled (uniform, metadata
+stripped) under their **original path/filename** so the content URLs resolve
+identically in prod; svg/mp4/pdf are copied verbatim. Re-run it after adding assets.
+Because the renders are now ignored, a freshly added image must be `git add`-ed only
+if you intend to commit it (you usually don't) — and any render still tracked from
+before must be `git rm --cached`-ed.
 
 ## Testing
 
