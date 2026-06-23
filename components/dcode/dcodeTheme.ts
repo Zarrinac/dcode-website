@@ -3,16 +3,20 @@ import { DCODE_BRAND } from '@/lib/dcode/brand';
 
 // Scoped D'code palette, exposed as CSS custom properties so children can use the
 // project's Tailwind v4 `bg-(--dcode-*)` token syntax. Applied on the root of every
-// /dcode section so the brand renders on its black/red theme independently of the
-// site's light/dark toggle.
+// D'code section so the brand renders on its black/red cinematic theme.
 export const DCODE_THEME_STYLE: CSSProperties = {
   ['--dcode-black' as string]: DCODE_BRAND.colors.black,
   ['--dcode-red' as string]: DCODE_BRAND.colors.red,
+  ['--dcode-red-hover' as string]: DCODE_BRAND.colors.redHover,
+  ['--dcode-red-glow' as string]: 'rgba(228, 6, 20, 0.35)',
   ['--dcode-surface' as string]: DCODE_BRAND.colors.surface,
   ['--dcode-surface-muted' as string]: DCODE_BRAND.colors.surfaceMuted,
-  ['--dcode-border' as string]: 'rgba(255,255,255,0.10)',
+  ['--dcode-stage' as string]: DCODE_BRAND.colors.stage,
+  ['--dcode-border' as string]: 'rgba(255,255,255,0.08)',
+  ['--dcode-border-strong' as string]: 'rgba(255,255,255,0.14)',
   ['--dcode-text' as string]: DCODE_BRAND.colors.textPrimary,
   ['--dcode-text-muted' as string]: DCODE_BRAND.colors.textMuted,
+  ['--dcode-text-faint' as string]: DCODE_BRAND.colors.textFaint,
   backgroundColor: DCODE_BRAND.colors.black,
   color: DCODE_BRAND.colors.textPrimary,
 };

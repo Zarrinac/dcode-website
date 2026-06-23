@@ -13,11 +13,13 @@
     "db:migrate": "prisma migrate dev --name init",
     "db:deploy": "prisma migrate deploy",
     "db:seed": "node scripts/seed-all.mjs",
-    "db:seed:dcode": "tsx scripts/seed-dcode.ts"
+    "db:seed:dcode": "tsx scripts/seed-dcode.ts",
+    "media:optimize": "node scripts/optimize-media.mjs"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
+    "framer-motion": "^12.40.0",
     "next": "^16.2.7",
     "next-intl": "^4.13.0",
     "pg": "^8.21.0",

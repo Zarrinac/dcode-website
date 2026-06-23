@@ -5,12 +5,17 @@
 
 :root {
   --dcode-black: #0b0b0b;
-  --dcode-red: #e30613;
-  --dcode-surface: #0b0b0b;
-  --dcode-surface-muted: #161616;
-  --dcode-border: rgba(255, 255, 255, 0.1);
-  --dcode-text: #ffffff;
-  --dcode-text-muted: #b3b3b3;
+  --dcode-red: #e40614;
+  --dcode-red-hover: #ff1f2d;
+  --dcode-red-glow: rgba(228, 6, 20, 0.35);
+  --dcode-surface: #111114;
+  --dcode-surface-muted: #18181c;
+  --dcode-stage: #f4f5f7;
+  --dcode-border: rgba(255, 255, 255, 0.08);
+  --dcode-border-strong: rgba(255, 255, 255, 0.14);
+  --dcode-text: #fafafa;
+  --dcode-text-muted: #a1a1aa;
+  --dcode-text-faint: #71717a;
 
   --background-color: var(--dcode-black);
   --default-black-font: var(--dcode-text);
@@ -87,6 +92,70 @@ html[lang='fa'] body {
   font-family: 'IRANSansXV', 'Dcode Sans', 'Segoe UI', Tahoma, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--dcode-red);
+  color: #ffffff;
+}
+
+/* Light "stage" surface for white products (e.g. the AC) on the dark theme. */
+.dcode-stage {
+  background: radial-gradient(
+    120% 120% at 50% 0%,
+    #ffffff 0%,
+    var(--dcode-stage) 55%,
+    #e6e8ec 100%
+  );
+}
+
+/* Soft red glow used behind hero product renders. */
+.dcode-glow {
+  background: radial-gradient(closest-side, var(--dcode-red-glow), transparent 70%);
+}
+
+/* ── Animated hero ambience — "Depth Grid × Decoder" ─────────────────────
+   Continuous, decorative motion lives in CSS (cheap, GPU-friendly) and is
+   auto-disabled by the prefers-reduced-motion block below. Entrance motion
+   is handled separately by framer-motion in HeroDepthGrid.tsx. */
+
+/* Depth-grid ambient "travel" breathing (10-12s loop). */
+.dcode-grid-breathe {
+  transform-origin: 50% 50%;
+  animation: dcode-grid-breathe 12s ease-in-out infinite;
+}
+
+@keyframes dcode-grid-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+/* Scroll-cue dot. */
+.dcode-scroll-dot {
+  animation: dcode-scroll-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes dcode-scroll-dot {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -97,4 +166,19 @@ html[lang='fa'] body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

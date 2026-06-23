@@ -43,10 +43,22 @@ next-env.d.ts
 # pm2 ecosystem.config.cjs
 /ecosystem.config.cjs
 
-# D'code media is staged in the sibling ../media folder and promoted to the
-# server; the heavy renders are served from NEXT_PUBLIC_MEDIA_BASE_URL in prod.
-# public/dcode stays committed so local dev (NEXT_PUBLIC_CONTENT_SOURCE=local)
-# works out of the box.
+# D'code media is staged in the sibling ../media folder (built by
+# `npm run media:optimize`) and promoted to the server; in prod the heavy assets are
+# served from NEXT_PUBLIC_MEDIA_BASE_URL. The renders/video/datasheets are NOT
+# committed — they live locally under public/ for dev and in ../media for the server.
+# Keep the tiny SVG logo and the root favicons/manifest so the app still builds & runs
+# without the media folder present.
+/public/dcode/**/*.png
+/public/dcode/**/*.jpg
+/public/dcode/**/*.jpeg
+/public/dcode/**/*.webp
+/public/dcode/**/*.avif
+/public/dcode/**/*.mp4
+/public/dcode/**/*.pdf
+/public/logos/*.png
+/public/logos/*.jpg
+/public/logos/*.webp
 
 /app/generated/prisma
 

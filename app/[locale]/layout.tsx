@@ -49,6 +49,15 @@ export async function generateMetadata(
     metadataBase: new URL(SITE_URL),
     title: "D'code — 4K Smart LED TVs",
     applicationName: DCODE_BRAND.name,
+    manifest: '/site.webmanifest',
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/favicon.svg', type: 'image/svg+xml' },
+        { url: '/favicon-96x96.png', type: 'image/png', sizes: '96x96' },
+      ],
+      apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
+    },
     robots: {
       index: true,
       follow: true,

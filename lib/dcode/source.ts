@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/db';
 import { DCODE_PRODUCTS } from '@/content/DcodeProducts';
 import type {
+  DcodeAttribute,
+  DcodeCategory,
   DcodeFeatureCard,
   DcodeLocale,
   DcodeProduct,
@@ -14,32 +16,27 @@ import type {
 
 type DcodeRow = {
   id: string;
+  category: string; // 'TV' | 'AC' (DB enum) — normalized to lowercase below
   series: string;
-  panel: string;
-  resolution: string;
-  os: string;
-  storage: string;
-  viewingAngle: string;
-  tuner: string;
-  sound: string;
-  connectivity: string[];
-  warrantyMonths: number;
+  warrantyMonths: number | null;
   extras: string[];
   heroImageUrl: string;
   heroVideoUrl: string | null;
   remoteImageUrl: string | null;
   gallery: unknown;
   featureCards: unknown;
+  attributes: unknown;
   remotes: unknown;
   specs: unknown;
   variants: {
     sku: string;
     size: string;
-    diagonalInch: number;
+    diagonalInch: number | null;
+    capacityBtu: number | null;
     imageUrl: string;
-    dimensionsWithoutStand: string;
-    dimensionsWithStand: string;
-    netWeight: string;
+    dimensionsWithoutStand: string | null;
+    dimensionsWithStand: string | null;
+    netWeight: string | null;
   }[];
   copies: {
     locale: string;
@@ -51,17 +48,20 @@ type DcodeRow = {
 };
 
 const EMPTY_SPECS: Record<DcodeLocale, string[]> = { en: [], fa: [] };
-const EMPTY_REMOTES: Record<DcodeLocale, string[]> = { en: [], fa: [] };
+
+const normalizeCategory = (value: string): DcodeCategory =>
+  value.toLowerCase() === 'ac' ? 'ac' : 'tv';
 
 const mapRow = (row: DcodeRow): DcodeProduct => {
   const variants: DcodeVariant[] = row.variants.map((variant) => ({
     sku: variant.sku,
     size: variant.size,
-    diagonalInch: variant.diagonalInch,
+    diagonalInch: variant.diagonalInch ?? undefined,
+    capacityBtu: variant.capacityBtu ?? undefined,
     image: variant.imageUrl,
-    dimensionsWithoutStand: variant.dimensionsWithoutStand,
-    dimensionsWithStand: variant.dimensionsWithStand,
-    netWeight: variant.netWeight,
+    dimensionsWithoutStand: variant.dimensionsWithoutStand ?? undefined,
+    dimensionsWithStand: variant.dimensionsWithStand ?? undefined,
+    netWeight: variant.netWeight ?? undefined,
   }));
 
   const copy = row.copies.reduce(
@@ -85,24 +85,17 @@ const mapRow = (row: DcodeRow): DcodeProduct => {
   return {
     id: row.id,
     brand: 'dcode',
-    category: 'led',
+    category: normalizeCategory(row.category),
     series: row.series,
-    panel: row.panel,
-    resolution: row.resolution,
-    os: row.os,
-    storage: row.storage,
-    viewingAngle: row.viewingAngle,
-    tuner: row.tuner,
-    sound: row.sound,
-    connectivity: row.connectivity,
-    warrantyMonths: row.warrantyMonths,
+    warrantyMonths: row.warrantyMonths ?? undefined,
     extras: row.extras,
     heroImage: row.heroImageUrl,
     heroVideo: row.heroVideoUrl ?? undefined,
     remoteImage: row.remoteImageUrl ?? undefined,
     gallery: Array.isArray(row.gallery) ? (row.gallery as string[]) : [],
     featureCards: Array.isArray(row.featureCards) ? (row.featureCards as DcodeFeatureCard[]) : [],
-    remotes: (row.remotes as Record<DcodeLocale, string[]>) ?? EMPTY_REMOTES,
+    attributes: Array.isArray(row.attributes) ? (row.attributes as DcodeAttribute[]) : [],
+    remotes: (row.remotes as Record<DcodeLocale, string[]>) ?? undefined,
     specs: (row.specs as Record<DcodeLocale, string[]>) ?? EMPTY_SPECS,
     variants,
     copy: {
@@ -130,6 +123,11 @@ export async function getDcodeProducts(): Promise<DcodeProduct[]> {
   } catch {
     return DCODE_PRODUCTS;
   }
+}
+
+export async function getDcodeProductsByCategory(category: DcodeCategory): Promise<DcodeProduct[]> {
+  const products = await getDcodeProducts();
+  return products.filter((product) => product.category === category);
 }
 
 export async function getDcodeProductById(id: string): Promise<DcodeProduct | undefined> {

@@ -14,7 +14,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const direction = locale === 'fa' ? 'rtl' : 'ltr';
 
   return (
-    <html lang={locale} dir={direction} suppressHydrationWarning>
+    <html lang={locale} dir={direction} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className="bg-(--background-color) text-(--default-black-font)">
         <Analytics />
         {children}

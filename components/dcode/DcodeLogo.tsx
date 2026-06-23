@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import { DCODE_BRAND } from '@/lib/dcode/brand';
 
-// The D'code logo asset is dark, so it disappears on the brand's black theme.
-// Render it inverted to white for visibility on dark surfaces.
+// D'code wordmark. On the brand's dark theme we use the official white wordmark with
+// the red dot (logoOnDark) so the brand red is preserved — the dark SVG would
+// otherwise need inverting, which flattens the dot to white.
 type DcodeLogoProps = {
   className?: string;
   priority?: boolean;
@@ -11,12 +12,12 @@ type DcodeLogoProps = {
 export default function DcodeLogo({ className, priority }: DcodeLogoProps) {
   return (
     <Image
-      src={DCODE_BRAND.logo}
+      src={DCODE_BRAND.logoOnDark}
       alt={`${DCODE_BRAND.name} logo`}
-      width={200}
-      height={51}
+      width={2000}
+      height={554}
       priority={priority}
-      className={`${className ?? ''} [filter:brightness(0)_invert(1)]`.trim()}
+      className={className}
     />
   );
 }
