@@ -80,11 +80,11 @@ Content source is toggled by `NEXT_PUBLIC_CONTENT_SOURCE` (`"local"` or `"remote
 
 ### Brand identity
 
-- `lib/dcode/brand.ts` (`DCODE_BRAND` — black `#0B0B0B` + red `#E30613` palette) and
+- `lib/dcode/brand.ts` (`DCODE_BRAND` — black `#0B0B0B` + red `#E40614` palette) and
   `components/dcode/dcodeTheme.ts` (`DCODE_THEME_STYLE`, `DCODE_BLEED_CLASS`). The
   whole site themes off these tokens (also mirrored as CSS vars in `globals.css`).
-- The red is an approximation of the logo red — **verify against the official brand
-  guideline before launch.**
+- The red `#E40614` is sampled from the official logo (`public/logos`) — the
+  authoritative brand red, replacing the earlier `#E30613` approximation.
 
 ### Key Directories
 
