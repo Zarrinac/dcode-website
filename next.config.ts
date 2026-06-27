@@ -50,6 +50,17 @@ const securityHeaders = [
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
 ];
 
+// The form / portal pages have no on-site back-end here; forward each to the
+// company's official page on hisense-ir.com, preserving the locale segment.
+// `from` is the D'code slug, `to` is the hisense-ir.com slug (they differ for the
+// dealer pages).
+const PARENT_FORM_REDIRECTS: Array<{ from: string; to: string }> = [
+  { from: 'survey', to: 'survey' },
+  { from: 'complaint', to: 'complaint' },
+  { from: 'become-a-dealer', to: 'request-representation' },
+  { from: 'dealer-portal', to: 'portal' },
+];
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns,
@@ -64,6 +75,15 @@ const nextConfig: NextConfig = {
         headers: securityHeaders,
       },
     ]);
+  },
+  redirects() {
+    return Promise.resolve(
+      PARENT_FORM_REDIRECTS.map(({ from, to }) => ({
+        source: `/:locale(fa|en)/${from}`,
+        destination: `https://hisense-ir.com/:locale/${to}`,
+        permanent: false,
+      })),
+    );
   },
 };
 

@@ -4,15 +4,19 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { HiBars3, HiXMark } from 'react-icons/hi2';
+import { HiBars3, HiChevronDown, HiXMark } from 'react-icons/hi2';
 import LocaleToggle from '@/components/shell/LocaleToggle';
-import type { NavItem } from '@/components/shell/MainNav';
+import type { NavItem, SupportItem } from '@/components/shell/MainNav';
 import type { Locale } from '@/i18n/routing';
 
-// Mobile menu: a hamburger that opens an animated full-width sheet with the nav links
-// and the locale toggle. Closes on route change, Escape, and backdrop tap.
+// Mobile menu: a hamburger that opens an animated full-width sheet with the nav links,
+// a collapsible Support section, and the locale toggle. Closes on route change,
+// Escape, and backdrop tap.
 type MobileNavProps = {
-  items: NavItem[];
+  primaryItems: NavItem[];
+  aboutItem: NavItem;
+  supportLabel: string;
+  supportItems: SupportItem[];
   locale: Locale;
   localeLabels: { fa: string; en: string };
   openLabel: string;
@@ -20,15 +24,25 @@ type MobileNavProps = {
 };
 
 export default function MobileNav({
-  items,
+  primaryItems,
+  aboutItem,
+  supportLabel,
+  supportItems,
   locale,
   localeLabels,
   openLabel,
   closeLabel,
 }: MobileNavProps) {
   const [open, setOpen] = useState(false);
+  const [supportOpen, setSupportOpen] = useState(false);
   const pathname = usePathname();
   const reduce = useReducedMotion();
+
+  const isActive = (href: string) => {
+    const isRoot = href.split('/').length <= 2;
+    return isRoot ? pathname === href : pathname.startsWith(href);
+  };
+  const links = [...primaryItems, aboutItem];
 
   // Lock scroll + close on Escape while open.
   useEffect(() => {
@@ -65,7 +79,8 @@ export default function MobileNav({
             onClick={() => setOpen(false)}
           >
             <motion.div
-              className="absolute inset-x-0 top-0 origin-top border-b border-(--dcode-border) bg-(--dcode-black) p-5 shadow-2xl"
+              dir={locale === 'fa' ? 'rtl' : 'ltr'}
+              className="absolute inset-x-0 top-0 max-h-dvh origin-top overflow-y-auto border-b border-(--dcode-border) bg-(--dcode-black) p-5 shadow-2xl"
               initial={{ y: reduce ? 0 : '-100%' }}
               animate={{ y: 0 }}
               exit={{ y: reduce ? 0 : '-100%' }}
@@ -82,27 +97,66 @@ export default function MobileNav({
                   <HiXMark className="size-6" aria-hidden />
                 </button>
               </div>
+
               <nav className="flex flex-col gap-1">
-                {items.map((item) => {
-                  const isRoot = item.href.split('/').length <= 2;
-                  const isActive = isRoot ? pathname === item.href : pathname.startsWith(item.href);
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      aria-current={isActive ? 'page' : undefined}
-                      className={`rounded-2xl px-4 py-3.5 text-lg font-semibold transition-colors ${
-                        isActive
-                          ? 'bg-(--dcode-surface) text-(--dcode-red)'
-                          : 'text-(--dcode-text) hover:bg-(--dcode-surface)'
-                      }`}
+                {links.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    aria-current={isActive(item.href) ? 'page' : undefined}
+                    className={`rounded-2xl px-4 py-3.5 text-lg font-semibold transition-colors ${
+                      isActive(item.href)
+                        ? 'bg-(--dcode-surface) text-(--dcode-red)'
+                        : 'text-(--dcode-text) hover:bg-(--dcode-surface)'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+
+                <button
+                  type="button"
+                  onClick={() => setSupportOpen((v) => !v)}
+                  aria-expanded={supportOpen}
+                  className="flex items-center justify-between rounded-2xl px-4 py-3.5 text-lg font-semibold text-(--dcode-text) transition-colors hover:bg-(--dcode-surface)"
+                >
+                  {supportLabel}
+                  <HiChevronDown
+                    aria-hidden
+                    className={`size-5 transition-transform ${supportOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                <AnimatePresence initial={false}>
+                  {supportOpen && (
+                    <motion.ul
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: reduce ? 0 : 0.22, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden ps-3"
                     >
-                      {item.label}
-                    </Link>
-                  );
-                })}
+                      {supportItems.map((item) => (
+                        <li key={item.href}>
+                          <Link
+                            href={item.href}
+                            onClick={() => setOpen(false)}
+                            aria-current={isActive(item.href) ? 'page' : undefined}
+                            className={`block rounded-xl px-4 py-2.5 text-base transition-colors ${
+                              isActive(item.href)
+                                ? 'text-(--dcode-red)'
+                                : 'text-(--dcode-text-muted) hover:text-(--dcode-text)'
+                            }`}
+                          >
+                            {item.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
               </nav>
+
               <div className="mt-6 border-t border-(--dcode-border) pt-5">
                 <LocaleToggle locale={locale} labels={localeLabels} />
               </div>
