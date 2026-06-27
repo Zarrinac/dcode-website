@@ -1,0 +1,6 @@
+# Server-side shell/ops scripts MUST stay LF — a CRLF working copy on the Linux
+# host can silently block `git pull` (leaving the deploy many commits behind) and
+# breaks the `#!/bin/bash` shebang. Pin them regardless of the committer's OS.
+*.sh    text eol=lf
+*.mjs   text eol=lf
+ecosystem.config.cjs.example text eol=lf
