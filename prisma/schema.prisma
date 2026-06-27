@@ -70,3 +70,31 @@ model DcodeProductCopy {
 
   @@unique([productId, locale])
 }
+
+// After-sales service representatives, shared with the parent company's (Hisense
+// Iran / Zarrin) network — D'code products are serviced by the same authorized
+// centres. Powers the /service-centers finder (DB-first; a static fallback ships
+// for DB-less runs). Schema matches the parent project so a DB dump loads as-is.
+model ServiceRepresentative {
+  id                   String   @id
+  provinceId           String
+  cityId               String
+  provinceNameFa       String
+  provinceNameEn       String
+  cityNameFa           String
+  cityNameEn           String
+  serviceKind          String
+  representativeNameFa String
+  representativeNameEn String
+  representativeCode   String
+  primaryPhone         String
+  mobilePhone          String
+  addressFa            String
+  addressEn            String
+  sortOrder            Int
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([provinceId, cityId, serviceKind, sortOrder])
+  @@index([serviceKind, sortOrder])
+}
