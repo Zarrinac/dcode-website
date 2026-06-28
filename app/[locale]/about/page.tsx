@@ -41,7 +41,7 @@ const CONTENT: Record<Locale, AboutContent> = {
     stats: [
       { value: '۲۴ ماه', label: 'گارانتی محصول' },
       { value: 'تا ۱۰ سال', label: 'تأمین قطعات و خدمات' },
-      { value: '۲ خانواده', label: 'تلویزیون و کولر گازی' },
+      { value: '۵ سال', label: 'گارانتی کمپرسور کولر گازی' },
     ],
     blocks: [
       {
@@ -54,7 +54,7 @@ const CONTENT: Record<Locale, AboutContent> = {
       },
       {
         title: 'تعهد به مشتری',
-        body: 'از خرید تا نصب و خدمات پس از فروش، تجربه‌ای شفاف و قابل‌اعتماد ارائه می‌کنیم؛ با گارانتی روشن و مسیرهای ساده برای دریافت پشتیبانی.',
+        body: 'از خرید تا نصب و خدمات پس از فروش، تجربه‌ای شفاف و قابل‌اعتماد ارائه می‌کنیم؛ با گارانتی روشن و مسیرهای ساده برای دریافت پشتیبانی. کولرهای گازی D’code افزون بر گارانتی محصول، از ۵ سال گارانتی کمپرسور بهره‌مند می‌شوند.',
       },
     ],
     contact: {
@@ -73,7 +73,7 @@ const CONTENT: Record<Locale, AboutContent> = {
     stats: [
       { value: '24 months', label: 'Product warranty' },
       { value: 'Up to 10 yrs', label: 'Parts & service' },
-      { value: '2 families', label: 'TVs and air conditioners' },
+      { value: '5 years', label: 'AC compressor warranty' },
     ],
     blocks: [
       {
@@ -86,7 +86,7 @@ const CONTENT: Record<Locale, AboutContent> = {
       },
       {
         title: 'Commitment to customers',
-        body: 'From purchase to installation and after-sales service, we deliver a transparent, trustworthy experience — with clear warranty terms and simple paths to support.',
+        body: 'From purchase to installation and after-sales service, we deliver a transparent, trustworthy experience — with clear warranty terms and simple paths to support. D’code air conditioners also come with a 5-year compressor warranty in addition to the product warranty.',
       },
     ],
     contact: {

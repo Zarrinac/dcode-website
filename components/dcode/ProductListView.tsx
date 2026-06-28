@@ -26,8 +26,6 @@ export default function ProductListView({
   breadcrumbItems,
   labels,
 }: ProductListViewProps) {
-  const isLight = category === 'ac';
-
   return (
     <DcodeSection locale={locale}>
       <div className="mb-8">
@@ -58,7 +56,6 @@ export default function ProductListView({
               options={product.variants.map((variant) => variant.size).join(' · ')}
               image={product.heroImage}
               cta={labels.viewProduct}
-              light={isLight}
               priority={index === 0}
             />
           </StaggerItem>
