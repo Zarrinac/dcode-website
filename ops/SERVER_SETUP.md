@@ -138,12 +138,22 @@ Create `/var/www/dcode/app/.env` (gitignored; read by `prisma` during deploy **a
 cat > /var/www/dcode/app/.env <<'ENV'
 DATABASE_URL="postgresql://reza_sf:CHANGE_ME_STRONG@localhost:5432/dcode?schema=public"
 NEXT_PUBLIC_SITE_URL="https://dcode.co.ir"
-NEXT_PUBLIC_CONTENT_SOURCE="local"
+# PRODUCTION = "remote": mediaUrl() emits /media/* served off the live media dir.
+# "local" (the dev default) would emit public-root /dcode,/logos and 404 on the server.
+NEXT_PUBLIC_CONTENT_SOURCE="remote"
 NEXT_PUBLIC_MEDIA_BASE_URL="/media"
 NEXT_PUBLIC_GA_ID=""
 ENV
 chmod 600 /var/www/dcode/app/.env
 ```
+
+> **Media path gotcha (cost an hour the first time):** with `remote`, runtime images
+> resolve as `/media/*`, but the **catalog DB also has `/dcode/*` and `/logos/*` baked
+> in** by `dcodeAsset()` at seed time — those render as-is and must ALSO resolve. So
+> `deploy.sh` symlinks all three into `public/` (`media`, `logos`, and each
+> `media/dcode/*` subdir). And because `next start` caches the `public/` listing at
+> boot, symlinks must exist **before** the process (re)starts — `deploy.sh` creates
+> them pre-`pm2 reload`. If you add them by hand to a running app, `pm2 restart dcode`.
 
 PM2 process config (also gitignored — holds the DB password). Start from the template:
 

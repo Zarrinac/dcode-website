@@ -86,23 +86,34 @@ npm run db:deploy
 log "Clearing Next cache (.next/cache) to avoid serving stale content..."
 rm -rf .next/cache
 
-# Ensure public/media -> live media dir symlink exists.
-# Media lives outside the app at /var/www/dcode/media and is served to browsers
-# by the Apache `Alias /media/`. But next/image's optimizer fetches a *relative*
-# source (NEXT_PUBLIC_MEDIA_BASE_URL=/media) via an INTERNAL request to the Node
-# server (:3000), which has no /media route — so optimized images 400 with
-# "received null" unless the Node server can also resolve /media. Symlinking it
-# into public/ lets the optimizer read it off disk, independent of host/domain
-# (works via raw IP and the live domain alike). Idempotent.
+# Ensure public/ resolves every media path the app emits. Media lives outside the
+# app at /var/www/dcode/media (Apache serves it via `Alias /media/`), but next/image's
+# optimizer fetches *relative* sources via an INTERNAL request to the Node server
+# (:3000) and reads them off disk under public/ — so each path the app emits must
+# resolve there or optimized images 400 "received null". The app emits THREE shapes:
+#   /media/*  — runtime mediaUrl() refs (NEXT_PUBLIC_CONTENT_SOURCE=remote)
+#   /dcode/*, /logos/*  — paths BAKED INTO THE DB by dcodeAsset() at seed time
+# So link all three off the live media dir. public/dcode is a committed dir (holds
+# dcode-logo.svg), so link its media SUBDIRS in rather than replacing it. Idempotent.
 MEDIA_LIVE="${DCODE_MEDIA_DIR:-/var/www/dcode/media}"
-if [ -d "$MEDIA_LIVE" ] && [ ! -e "$APP_DIR/public/media" ]; then
-  log "Linking public/media -> $MEDIA_LIVE ..."
-  ln -s "$MEDIA_LIVE" "$APP_DIR/public/media"
+if [ -d "$MEDIA_LIVE" ]; then
+  log "Ensuring public/ media symlinks (media, logos, dcode/*) ..."
+  ln -sfn "$MEDIA_LIVE"        "$APP_DIR/public/media"
+  [ -d "$MEDIA_LIVE/logos" ] && ln -sfn "$MEDIA_LIVE/logos" "$APP_DIR/public/logos"
+  if [ -d "$MEDIA_LIVE/dcode" ]; then
+    mkdir -p "$APP_DIR/public/dcode"
+    for d in "$MEDIA_LIVE"/dcode/*/; do
+      [ -d "$d" ] && ln -sfn "$d" "$APP_DIR/public/dcode/$(basename "$d")"
+    done
+  fi
 fi
 
 log "Building Next.js..."
 npm run build
 
+# `pm2 reload` spawns fresh workers that re-read public/ at startup, so the symlinks
+# above (created pre-reload) are picked up — `next start` caches the public/ listing
+# at boot, so a symlink added to an ALREADY-running process is invisible until reload.
 log "Restarting PM2..."
 pm2 reload ecosystem.config.cjs --update-env
 
