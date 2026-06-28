@@ -325,6 +325,41 @@ curl -skS -o /dev/null -w 'https /fa -> %{http_code}\n' --resolve dcode.co.ir:44
 > relabel it: `sudo /usr/sbin/restorecon -RF /var/www/dcode/media` (it should inherit
 > `httpd_sys_content_t` from `/var/www` automatically).
 
+### 7c. Renewing the TLS cert (manual, Certum DV)
+
+The cert is a **purchased Certum DV** cert (NOT Let's Encrypt → no auto-renewal). It is
+**short-lived (~6.5 months)** — the cert installed 2026-06-28 expires **2027-01-13**.
+Renew/reissue with Certum, then swap the two files and reload Apache. Certum ships three
+files (`*_cert.pem` = leaf, `*_bundle.pem` = chain incl. self-signed root, `*_private_key.pem`):
+
+```bash
+# On the dev PC: build fullchain = leaf + intermediates (drop the self-signed root),
+# i.e. cert.pem + the two intermediate certs from bundle.pem. Then verify key⇄cert match:
+#   openssl x509 -in fullchain.crt -noout -modulus | openssl md5
+#   openssl rsa  -in dcode.key     -noout -modulus | openssl md5   # the two md5s must be equal
+scp -i ~/.ssh/dcode_site_ed25519 fullchain.crt dcode.key reza@172.17.0.20:/home/reza/
+```
+
+```bash
+# On the server: back up, install (root-owned, key 600), scrub copies, test, reload.
+TS=$(date +%Y%m%d-%H%M%S)
+sudo cp -a /etc/ssl/dcode/fullchain.crt /etc/ssl/dcode/fullchain.crt.bak.$TS
+sudo cp -a /etc/ssl/dcode/dcode.key     /etc/ssl/dcode/dcode.key.bak.$TS
+sudo install -m 644 -o root -g root /home/reza/fullchain.crt /etc/ssl/dcode/fullchain.crt
+sudo install -m 600 -o root -g root /home/reza/dcode.key     /etc/ssl/dcode/dcode.key
+shred -u /home/reza/dcode.key; rm -f /home/reza/fullchain.crt
+sudo /usr/sbin/apachectl -t && sudo systemctl reload apache2
+# Verify the swap took (expect the new notAfter + verify=0):
+echo | openssl s_client -connect 127.0.0.1:443 -servername dcode.co.ir 2>/dev/null \
+  | openssl x509 -noout -subject -issuer -dates
+curl -sS -o /dev/null -w '%{http_code} verify=%{ssl_verify_result}\n' \
+  --resolve dcode.co.ir:443:127.0.0.1 https://dcode.co.ir/fa            # 200 verify=0
+```
+
+> Cert + key are **secrets** — they live only under `/etc/ssl/dcode/` on the host, never in
+> git. The `*.dcode.co.ir` wildcard (SAN also lists the apex `dcode.co.ir`) covers `www`.
+> **Set a reminder for early January 2027** to renew before expiry — the cert is short-lived.
+
 ## 8. Firewall (firewalld)
 
 ```bash
