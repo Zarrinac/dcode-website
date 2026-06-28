@@ -34,7 +34,9 @@ sudo zypper refresh
 sudo zypper update -y
 # git+rsync for deploy/media, curl for nvm, tar/gzip for backups, python3 for the
 # monitor script, gcc-c++/make as a fallback toolchain for any native npm build.
-sudo zypper install -y git rsync curl tar gzip python3 gcc-c++ make
+# openssl (self-signed placeholder cert), policycoreutils (SELinux setsebool, §7b),
+# cronie (crontab + cron daemon, §11) are NOT preinstalled on the minimal image.
+sudo zypper install -y git rsync curl tar gzip python3 gcc-c++ make openssl policycoreutils cronie
 ```
 
 ## 1. Node toolchain (nvm + PM2)
@@ -355,10 +357,24 @@ sudo chmod 440 /etc/sudoers.d/dcode-media
 sudo cp /var/www/dcode/app/ops/cron/dcode-monitor.sh /usr/local/bin/dcode-monitor.sh
 sudo cp /var/www/dcode/app/ops/cron/weekly-backup.sh /usr/local/bin/weekly-backup.sh
 sudo chmod +x /usr/local/bin/dcode-monitor.sh /usr/local/bin/weekly-backup.sh
-crontab -e   # add:
-#   0 * * * *  /usr/local/bin/dcode-monitor.sh
-#   0 3 * * 0  /usr/local/bin/weekly-backup.sh >> /var/log/dcode-backup.log 2>&1
+
+# cron is NOT installed by default on Leap 16 minimal — install + enable it, and
+# pre-create the backup dir/log (weekly-backup.sh's mkdir runs as reza but /backup is root).
+sudo zypper install -y cronie
+sudo systemctl enable --now cron
+sudo mkdir -p /backup
+sudo touch /var/log/dcode-backup.log && sudo chown reza:users /var/log/dcode-backup.log
+
+# Install the schedule (idempotent — replaces only our two lines):
+( crontab -l 2>/dev/null | grep -vE 'dcode-monitor\.sh|weekly-backup\.sh'
+  echo '0 * * * *  /usr/local/bin/dcode-monitor.sh'
+  echo '0 3 * * 0  /usr/local/bin/weekly-backup.sh >> /var/log/dcode-backup.log 2>&1'
+) | crontab -
+crontab -l
 ```
+
+> `dcode-monitor.sh` pipes stats to `claude -p`; the `claude` CLI isn't on the server, so
+> it gracefully falls back to logging raw `df`/`free`/PM2 stats to `/var/log/dcode-monitor.log`.
 
 (The `weekly-backup.sh` `pg_dumpall`/`tar /etc` steps and the monitor's `df/free` are
 generic — they work the same on openSUSE.)
