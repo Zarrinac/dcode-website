@@ -132,7 +132,6 @@ export default async function DcodeLandingPage({ params }: PageProps) {
                   image={featuredAc.heroImage}
                   imageAlt={featuredAc.copy[locale].name}
                   cta={t('landing.exploreCta')}
-                  light
                 />
               </StaggerItem>
             )}
