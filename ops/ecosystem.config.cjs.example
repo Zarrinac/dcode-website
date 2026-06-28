@@ -32,7 +32,9 @@ module.exports = {
         DATABASE_URL:
           'postgresql://reza_sf:CHANGE_ME@localhost:5432/dcode?schema=public',
         NEXT_PUBLIC_SITE_URL: 'https://dcode.co.ir',
-        NEXT_PUBLIC_CONTENT_SOURCE: 'local',
+        // PRODUCTION must be 'remote' so mediaUrl() emits /media/* (served off the
+        // live media dir), NOT the public-root /dcode,/logos paths used in dev.
+        NEXT_PUBLIC_CONTENT_SOURCE: 'remote',
         NEXT_PUBLIC_MEDIA_BASE_URL: '/media',
         // Optional analytics / search-console verification:
         // NEXT_PUBLIC_GA_ID: '',
