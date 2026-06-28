@@ -1,0 +1,44 @@
+// PM2 process config for the D'code production app — TEMPLATE.
+//
+// The REAL ecosystem.config.cjs lives ONLY on the server (it's gitignored, see
+// .gitignore line `/ecosystem.config.cjs`) because it holds the DATABASE_URL.
+// Copy this file to the repo root on the server and fill in the real values:
+//
+//   cp ops/ecosystem.config.cjs.example ecosystem.config.cjs
+//   $EDITOR ecosystem.config.cjs            # set DATABASE_URL password
+//
+// Then start it once and persist across reboots (see ops/README.md):
+//   pm2 start ecosystem.config.cjs && pm2 save
+//
+// Runtime env precedence: PM2's `env` block wins for the Node process. Keep the
+// same DATABASE_URL in the server's .env too — prisma.config.ts / `npm run db:deploy`
+// read .env during the deploy (PM2 isn't involved at that point).
+module.exports = {
+  apps: [
+    {
+      name: 'dcode',
+      // `next start` — bind to :3000; Apache reverse-proxies dcode.co.ir → :3000.
+      script: 'node_modules/next/dist/bin/next',
+      args: 'start -p 3000',
+      cwd: '/var/www/dcode/app',
+      instances: 1,
+      exec_mode: 'fork',
+      autorestart: true,
+      max_memory_restart: '512M',
+      env: {
+        NODE_ENV: 'production',
+        PORT: '3000',
+        // Dedicated local Postgres on this host (created in ops/SERVER_SETUP.md).
+        DATABASE_URL:
+          'postgresql://reza_sf:CHANGE_ME@localhost:5432/dcode?schema=public',
+        NEXT_PUBLIC_SITE_URL: 'https://dcode.co.ir',
+        NEXT_PUBLIC_CONTENT_SOURCE: 'local',
+        NEXT_PUBLIC_MEDIA_BASE_URL: '/media',
+        // Optional analytics / search-console verification:
+        // NEXT_PUBLIC_GA_ID: '',
+        // NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: '',
+        // NEXT_PUBLIC_BING_SITE_VERIFICATION: '',
+      },
+    },
+  ],
+};
