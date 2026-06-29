@@ -92,6 +92,21 @@ html[lang='fa'] body {
   font-family: 'IRANSansXV', 'Dcode Sans', 'Segoe UI', Tahoma, sans-serif;
 }
 
+/* ── Persian (RTL) typography ────────────────────────────────────────────
+   Persian/Arabic is a cursive script whose glyphs join. Any letter-spacing
+   breaks that joining, so the Latin-tuned `tracking-*` utilities (e.g. the
+   `tracking-[0.3em]` eyebrow labels, `tracking-tight` headings) render words
+   like "محصولات" as "م ح ص و ل ا ت". Neutralise tracking under the fa locale. */
+html[lang='fa'] * {
+  letter-spacing: 0 !important;
+}
+
+/* The hero headline uses a very tight Latin line-height (`leading-[1.06]`).
+   Persian glyphs are taller, so stacked lines cramp together — relax it. */
+html[lang='fa'] #hero-title {
+  line-height: 1.35;
+}
+
 html {
   scroll-behavior: smooth;
 }
