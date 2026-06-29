@@ -191,7 +191,13 @@ before must be `git rm --cached`-ed.
 
 ## graphify
 
-This project has a knowledge graph at graphify-out/ once generated.
+This project has a knowledge graph at `graphify-out/` (686 nodes · 1129 edges · 42
+communities), built from the app code + core docs (CLAUDE.md, the READMEs,
+`ops/SERVER_SETUP.md`, `seo/keywords.txt`). The machine-local `.claude/` and `.husky/`
+trees are intentionally excluded so the graph reflects the dcode app, not tooling.
+Only `graph.json`, `graph.html`, `GRAPH_REPORT.md`, `manifest.json` + the inner
+`.gitignore` are committed (see `graphify-out/.gitignore`); `cache/`, `cost.json`, and
+`.graphify_*` machine-local state stay untracked.
 
 Rules:
 

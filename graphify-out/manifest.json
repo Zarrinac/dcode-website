@@ -1,0 +1,437 @@
+{
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\[locale]\\about\\page.tsx": {
+    "mtime": 1782633564.7869644,
+    "ast_hash": "df0f09134f682a9700f952a840d30f46",
+    "semantic_hash": "df0f09134f682a9700f952a840d30f46"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\[locale]\\air-conditioners\\[productId]\\page.tsx": {
+    "mtime": 1782215878.846977,
+    "ast_hash": "fd4e822eb7c470e283100e2d6db7b5e1",
+    "semantic_hash": "fd4e822eb7c470e283100e2d6db7b5e1"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\[locale]\\air-conditioners\\page.tsx": {
+    "mtime": 1782215878.846977,
+    "ast_hash": "7621c058fb3dc31e988d76f8e6b0c1b2",
+    "semantic_hash": "7621c058fb3dc31e988d76f8e6b0c1b2"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\[locale]\\contact\\page.tsx": {
+    "mtime": 1782559143.0196714,
+    "ast_hash": "167258fe347b70aa2ab200a240e4e180",
+    "semantic_hash": "167258fe347b70aa2ab200a240e4e180"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\[locale]\\faq\\page.tsx": {
+    "mtime": 1782722085.7485247,
+    "ast_hash": "a0c7673cfd4f28f4d9e095fa8a4c6e88",
+    "semantic_hash": "a0c7673cfd4f28f4d9e095fa8a4c6e88"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\[locale]\\layout.tsx": {
+    "mtime": 1782718240.3215535,
+    "ast_hash": "eb2e485267830311a8fd2d53ccabf00b",
+    "semantic_hash": "eb2e485267830311a8fd2d53ccabf00b"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\[locale]\\page.tsx": {
+    "mtime": 1782718240.3225534,
+    "ast_hash": "bc35707dbf24f644825b757d97f37ada",
+    "semantic_hash": "bc35707dbf24f644825b757d97f37ada"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\[locale]\\service-centers\\page.tsx": {
+    "mtime": 1782559143.0343115,
+    "ast_hash": "dcc7ad2ea9dbe9276677064263752b21",
+    "semantic_hash": "dcc7ad2ea9dbe9276677064263752b21"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\[locale]\\service\\page.tsx": {
+    "mtime": 1782559143.0353167,
+    "ast_hash": "ae4d1a78cdf7b5cad29fb9ec973ff32e",
+    "semantic_hash": "ae4d1a78cdf7b5cad29fb9ec973ff32e"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\[locale]\\tvs\\[productId]\\page.tsx": {
+    "mtime": 1782215878.846977,
+    "ast_hash": "d5ebf70377366417a0bdc8447cbc4bbb",
+    "semantic_hash": "d5ebf70377366417a0bdc8447cbc4bbb"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\[locale]\\tvs\\page.tsx": {
+    "mtime": 1782215878.846977,
+    "ast_hash": "860b764b1d54e04af853018e8e7c78da",
+    "semantic_hash": "860b764b1d54e04af853018e8e7c78da"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\[locale]\\warranty\\page.tsx": {
+    "mtime": 1782559143.0353167,
+    "ast_hash": "f798324e33e53f44d6f6870d83342723",
+    "semantic_hash": "f798324e33e53f44d6f6870d83342723"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\layout.tsx": {
+    "mtime": 1782215878.846977,
+    "ast_hash": "d4bf54f107c973e3c3b52335aa1db5f4",
+    "semantic_hash": "d4bf54f107c973e3c3b52335aa1db5f4"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\page.tsx": {
+    "mtime": 1782046124.9621499,
+    "ast_hash": "98a1c7349b43bc7d3e22c864ceddafe6",
+    "semantic_hash": "98a1c7349b43bc7d3e22c864ceddafe6"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\robots.ts": {
+    "mtime": 1782046275.40403,
+    "ast_hash": "3a5863ba5756b46153236cb0e074395f",
+    "semantic_hash": "3a5863ba5756b46153236cb0e074395f"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\app\\sitemap.ts": {
+    "mtime": 1782559143.0374744,
+    "ast_hash": "5eb8e707fbbbf5bb2ccb119a7f650d6e",
+    "semantic_hash": "5eb8e707fbbbf5bb2ccb119a7f650d6e"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\Breadcrumb.tsx": {
+    "mtime": 1782215878.8608046,
+    "ast_hash": "222375b15e896aaa8780adff64722062",
+    "semantic_hash": "222375b15e896aaa8780adff64722062"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\CtaLink.tsx": {
+    "mtime": 1782215878.8608046,
+    "ast_hash": "30a1ac9bfee92576fe37ce9816e2fe5d",
+    "semantic_hash": "30a1ac9bfee92576fe37ce9816e2fe5d"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\DcodeLogo.tsx": {
+    "mtime": 1782215878.862811,
+    "ast_hash": "462449957492d94d6e972dde7845640a",
+    "semantic_hash": "462449957492d94d6e972dde7845640a"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\DcodeSection.tsx": {
+    "mtime": 1782215878.8632627,
+    "ast_hash": "7c16ce84519094d151122fbb1a34870c",
+    "semantic_hash": "7c16ce84519094d151122fbb1a34870c"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\Gallery.tsx": {
+    "mtime": 1782215878.8642647,
+    "ast_hash": "2d73708ec5beaff2f710123109d837d2",
+    "semantic_hash": "2d73708ec5beaff2f710123109d837d2"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\ProductCard.tsx": {
+    "mtime": 1782718240.3235538,
+    "ast_hash": "694c7f0ec1ca4b424b60bda68265ad2d",
+    "semantic_hash": "694c7f0ec1ca4b424b60bda68265ad2d"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\ProductDetailView.tsx": {
+    "mtime": 1782215878.8659124,
+    "ast_hash": "ba8af7ffec72e250b1f32b1615b023b5",
+    "semantic_hash": "ba8af7ffec72e250b1f32b1615b023b5"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\ProductFamilyCard.tsx": {
+    "mtime": 1782215878.8659124,
+    "ast_hash": "d7fede026d57ec2be7d73d0300575a6b",
+    "semantic_hash": "d7fede026d57ec2be7d73d0300575a6b"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\ProductListView.tsx": {
+    "mtime": 1782718240.325554,
+    "ast_hash": "23e62f39ba32f45f95bb57d2f7397cca",
+    "semantic_hash": "23e62f39ba32f45f95bb57d2f7397cca"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\ProductShowcase.tsx": {
+    "mtime": 1782718240.3265536,
+    "ast_hash": "acd83f78dda95b340ba90fae942a0b13",
+    "semantic_hash": "acd83f78dda95b340ba90fae942a0b13"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\SectionHeading.tsx": {
+    "mtime": 1782215878.868477,
+    "ast_hash": "0014c5d25ef3162ac78dd2b125fe9f53",
+    "semantic_hash": "0014c5d25ef3162ac78dd2b125fe9f53"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\SpecSheet.tsx": {
+    "mtime": 1782215878.868477,
+    "ast_hash": "af844d6052f75797688d3f7eb3615908",
+    "semantic_hash": "af844d6052f75797688d3f7eb3615908"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\dcodeTheme.ts": {
+    "mtime": 1782215878.868477,
+    "ast_hash": "5a9e2b6228a4d7aeb849270da19bd075",
+    "semantic_hash": "5a9e2b6228a4d7aeb849270da19bd075"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\heroes\\HeroDepthGrid.tsx": {
+    "mtime": 1782215878.868477,
+    "ast_hash": "5d61bb9e91a599289c1ae4c78e6b707b",
+    "semantic_hash": "5d61bb9e91a599289c1ae4c78e6b707b"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\heroes\\heroShared.tsx": {
+    "mtime": 1782215878.868477,
+    "ast_hash": "3c24c8d807e8675eda1722217a15c37a",
+    "semantic_hash": "3c24c8d807e8675eda1722217a15c37a"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\routes\\ContactCard.tsx": {
+    "mtime": 1782559143.0394797,
+    "ast_hash": "56194f390d84ed83d01b7d8475edb466",
+    "semantic_hash": "56194f390d84ed83d01b7d8475edb466"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\routes\\RoutePage.tsx": {
+    "mtime": 1782559143.0394797,
+    "ast_hash": "5a36e79e50e84cfc48c1962156bcf7c7",
+    "semantic_hash": "5a36e79e50e84cfc48c1962156bcf7c7"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\dcode\\routes\\ServiceCenterFinder.tsx": {
+    "mtime": 1782559143.0394797,
+    "ast_hash": "94271ea72c5d23f6a67e34d20406d5eb",
+    "semantic_hash": "94271ea72c5d23f6a67e34d20406d5eb"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\motion\\ParallaxImage.tsx": {
+    "mtime": 1782215878.868477,
+    "ast_hash": "eb5cefa133c0f9a966bee15bc51311de",
+    "semantic_hash": "eb5cefa133c0f9a966bee15bc51311de"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\motion\\Reveal.tsx": {
+    "mtime": 1782215878.868477,
+    "ast_hash": "d1bb1db3e46594010255601b7cfac1a9",
+    "semantic_hash": "d1bb1db3e46594010255601b7cfac1a9"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\motion\\Stagger.tsx": {
+    "mtime": 1782215878.868477,
+    "ast_hash": "e41a51c2c651e8143f89e6af8b3bf2a8",
+    "semantic_hash": "e41a51c2c651e8143f89e6af8b3bf2a8"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\seo\\Analytics.tsx": {
+    "mtime": 1782046104.639321,
+    "ast_hash": "f0e92457166415621213d58145eef8ef",
+    "semantic_hash": "f0e92457166415621213d58145eef8ef"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\seo\\JsonLd.tsx": {
+    "mtime": 1782046991.2954433,
+    "ast_hash": "f14fe7d1bd2718e3a4f7cf104ae348e3",
+    "semantic_hash": "f14fe7d1bd2718e3a4f7cf104ae348e3"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\seo\\StructuredData.tsx": {
+    "mtime": 1782718240.3275535,
+    "ast_hash": "81203f8acec65beea1ebe1bf4a18416f",
+    "semantic_hash": "81203f8acec65beea1ebe1bf4a18416f"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\shell\\LocaleToggle.tsx": {
+    "mtime": 1782046052.5636559,
+    "ast_hash": "2d9686c582f9dbfc96d60d2678e187a3",
+    "semantic_hash": "2d9686c582f9dbfc96d60d2678e187a3"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\shell\\MainNav.tsx": {
+    "mtime": 1782559143.0394797,
+    "ast_hash": "f477dcb078c1452ca5667660659136c1",
+    "semantic_hash": "f477dcb078c1452ca5667660659136c1"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\shell\\MobileNav.tsx": {
+    "mtime": 1782559143.043153,
+    "ast_hash": "4c9dbde9f874d9613b757c1810448c0a",
+    "semantic_hash": "4c9dbde9f874d9613b757c1810448c0a"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\shell\\SiteFooter.tsx": {
+    "mtime": 1782559143.0451574,
+    "ast_hash": "ecc2087286f08bedd3ea727ac715d21c",
+    "semantic_hash": "ecc2087286f08bedd3ea727ac715d21c"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\components\\shell\\SiteHeader.tsx": {
+    "mtime": 1782559143.0451574,
+    "ast_hash": "5a8e00768e093f94dd652ba9ebb739a0",
+    "semantic_hash": "5a8e00768e093f94dd652ba9ebb739a0"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\content\\DcodeProducts.ts": {
+    "mtime": 1782718240.3285553,
+    "ast_hash": "d03316143bed1393ab206dd4a27219eb",
+    "semantic_hash": "d03316143bed1393ab206dd4a27219eb"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\content\\serviceCenters.ts": {
+    "mtime": 1782559143.0471623,
+    "ast_hash": "8b827b434ff4ad1f586c99459d28c8af",
+    "semantic_hash": "8b827b434ff4ad1f586c99459d28c8af"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\i18n\\request.ts": {
+    "mtime": 1782045797.1052096,
+    "ast_hash": "869855e942de7226cafab5b23f66065e",
+    "semantic_hash": "869855e942de7226cafab5b23f66065e"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\i18n\\routing.ts": {
+    "mtime": 1782045787.44626,
+    "ast_hash": "922ea0d22f22574ab48528b54cfc309e",
+    "semantic_hash": "922ea0d22f22574ab48528b54cfc309e"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\lib\\contentSource.ts": {
+    "mtime": 1782045807.2613428,
+    "ast_hash": "be33be5495cb5a5b996be967b4790650",
+    "semantic_hash": "be33be5495cb5a5b996be967b4790650"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\lib\\db.ts": {
+    "mtime": 1782045829.7860644,
+    "ast_hash": "f84a4af0943abd364f3a38058cc05168",
+    "semantic_hash": "f84a4af0943abd364f3a38058cc05168"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\lib\\dcode\\brand.ts": {
+    "mtime": 1782215878.880332,
+    "ast_hash": "6d79fbb1c43b6f0d1f4e1b4229847dfb",
+    "semantic_hash": "6d79fbb1c43b6f0d1f4e1b4229847dfb"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\lib\\dcode\\categories.ts": {
+    "mtime": 1782718240.3304164,
+    "ast_hash": "4696e23b434978e58485b35c4c34ff73",
+    "semantic_hash": "4696e23b434978e58485b35c4c34ff73"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\lib\\dcode\\contact.ts": {
+    "mtime": 1782559143.0471623,
+    "ast_hash": "cb5a4af9990a8cc9e90ac47b0ce91b5c",
+    "semantic_hash": "cb5a4af9990a8cc9e90ac47b0ce91b5c"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\lib\\dcode\\jsonld.ts": {
+    "mtime": 1782215878.8823378,
+    "ast_hash": "46a715a7466fb3496582e76d1dfaa4d9",
+    "semantic_hash": "46a715a7466fb3496582e76d1dfaa4d9"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\lib\\dcode\\nav.ts": {
+    "mtime": 1782559143.0471623,
+    "ast_hash": "81c67a271d9b90a57d2b000f608ac15f",
+    "semantic_hash": "81c67a271d9b90a57d2b000f608ac15f"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\lib\\dcode\\routes.ts": {
+    "mtime": 1782559143.0471623,
+    "ast_hash": "ede1e7f55c35a0e1e71bb79dc6b2f8ae",
+    "semantic_hash": "ede1e7f55c35a0e1e71bb79dc6b2f8ae"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\lib\\dcode\\serviceCenterSource.ts": {
+    "mtime": 1782559143.051078,
+    "ast_hash": "5f6db606a3b5583c1610ab23099e8dcd",
+    "semantic_hash": "5f6db606a3b5583c1610ab23099e8dcd"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\lib\\dcode\\source.ts": {
+    "mtime": 1782215878.8833385,
+    "ast_hash": "0e746733cb191b36fb53a35c80233818",
+    "semantic_hash": "0e746733cb191b36fb53a35c80233818"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\lib\\mediaUrl.ts": {
+    "mtime": 1782045818.9304886,
+    "ast_hash": "d2371783a0dace6e93f34c39300ed541",
+    "semantic_hash": "d2371783a0dace6e93f34c39300ed541"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\lib\\seo\\keywords.ts": {
+    "mtime": 1782718240.3314137,
+    "ast_hash": "5228c12f006763e708c4de903000b888",
+    "semantic_hash": "5228c12f006763e708c4de903000b888"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\lib\\seo\\site.ts": {
+    "mtime": 1782045846.2678854,
+    "ast_hash": "3a86e4b72a3c5c349b64837bf69a158c",
+    "semantic_hash": "3a86e4b72a3c5c349b64837bf69a158c"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\messages\\en.json": {
+    "mtime": 1782633564.7869644,
+    "ast_hash": "9f3249fe4bdbd183bc859f73aaac3eb5",
+    "semantic_hash": "9f3249fe4bdbd183bc859f73aaac3eb5"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\messages\\fa.json": {
+    "mtime": 1782718240.3324146,
+    "ast_hash": "705c251bcd4c19e5a8c4bb8c05e3b02e",
+    "semantic_hash": "705c251bcd4c19e5a8c4bb8c05e3b02e"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\next.config.ts": {
+    "mtime": 1782559143.051078,
+    "ast_hash": "b2d466a905213f20d7ec0f17d31099d5",
+    "semantic_hash": "b2d466a905213f20d7ec0f17d31099d5"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\ops\\cron\\dcode-monitor.sh": {
+    "mtime": 1782625364.401536,
+    "ast_hash": "2962c916e6f2dc30a6bd0b3c5be644ff",
+    "semantic_hash": "2962c916e6f2dc30a6bd0b3c5be644ff"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\ops\\cron\\weekly-backup.sh": {
+    "mtime": 1782625364.401536,
+    "ast_hash": "60c4372ff770bcfd1fb844f2902bcebf",
+    "semantic_hash": "60c4372ff770bcfd1fb844f2902bcebf"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\ops\\deploy.sh": {
+    "mtime": 1782627149.8134916,
+    "ast_hash": "49d5cf0ad7a61444aec272701cca9b62",
+    "semantic_hash": "49d5cf0ad7a61444aec272701cca9b62"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\ops\\preflight.mjs": {
+    "mtime": 1782625364.401536,
+    "ast_hash": "e9f9693789a29647ce44e5ac5d76818d",
+    "semantic_hash": "e9f9693789a29647ce44e5ac5d76818d"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\ops\\sync-media.sh": {
+    "mtime": 1782625364.401536,
+    "ast_hash": "b8dc77475e98c85a891243fad6e2d2ca",
+    "semantic_hash": "b8dc77475e98c85a891243fad6e2d2ca"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\ops\\upload-media.ps1": {
+    "mtime": 1782625364.401536,
+    "ast_hash": "4b9ac99213dfafdc3b6b13a18f7e37e3",
+    "semantic_hash": "4b9ac99213dfafdc3b6b13a18f7e37e3"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\package.json": {
+    "mtime": 1782215878.889336,
+    "ast_hash": "cfe424722da35a8c508a9fe24210f02f",
+    "semantic_hash": "cfe424722da35a8c508a9fe24210f02f"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\postcss.config.mjs": {
+    "mtime": 1782045717.6628232,
+    "ast_hash": "f4e93057c0189a2398d312d3000cb51d",
+    "semantic_hash": "f4e93057c0189a2398d312d3000cb51d"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\prisma.config.ts": {
+    "mtime": 1782559143.051078,
+    "ast_hash": "eeb257787aeb258727ef3b50a7010fa1",
+    "semantic_hash": "eeb257787aeb258727ef3b50a7010fa1"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\prisma\\migrations\\20260627104428_init\\migration.sql": {
+    "mtime": 1782559143.051078,
+    "ast_hash": "da30765dd988c1f214f9effbf5cfd803",
+    "semantic_hash": "da30765dd988c1f214f9effbf5cfd803"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\prisma\\migrations\\20260627110000_drop_iran_locations\\migration.sql": {
+    "mtime": 1782559143.051078,
+    "ast_hash": "cdf370297ad0b8a12b22d32f65ff924c",
+    "semantic_hash": "cdf370297ad0b8a12b22d32f65ff924c"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\scripts\\optimize-media.mjs": {
+    "mtime": 1782215878.8971074,
+    "ast_hash": "38518d509118895218d55f12061e3922",
+    "semantic_hash": "38518d509118895218d55f12061e3922"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\scripts\\seed-all.mjs": {
+    "mtime": 1782045936.784662,
+    "ast_hash": "c00b2ff65b96beeaff6a6dc8c2daf187",
+    "semantic_hash": "c00b2ff65b96beeaff6a6dc8c2daf187"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\scripts\\seed-dcode.ts": {
+    "mtime": 1782215878.8971074,
+    "ast_hash": "15ac4895ef678d8bab565f5f8f495757",
+    "semantic_hash": "15ac4895ef678d8bab565f5f8f495757"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\tsconfig.json": {
+    "mtime": 1782045696.2096891,
+    "ast_hash": "fa73cd5c37f1beed178559ead76f4fc5",
+    "semantic_hash": "fa73cd5c37f1beed178559ead76f4fc5"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\types\\dcode.ts": {
+    "mtime": 1782215878.8971074,
+    "ast_hash": "ec1a5df3ff96c2beaa309f7d6fac94cc",
+    "semantic_hash": "ec1a5df3ff96c2beaa309f7d6fac94cc"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\types\\tv.ts": {
+    "mtime": 1782045856.0010843,
+    "ast_hash": "db2bba6b525495ec0364a7c25b4c761d",
+    "semantic_hash": "db2bba6b525495ec0364a7c25b4c761d"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\CLAUDE.md": {
+    "mtime": 1782217592.6327941,
+    "ast_hash": "c866ede900d7c70918fb7e80cfc15038",
+    "semantic_hash": "c866ede900d7c70918fb7e80cfc15038"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\README.md": {
+    "mtime": 1782046991.0933237,
+    "ast_hash": "0ddaa5cfeb95d4d54910fddc1f5923f9",
+    "semantic_hash": "0ddaa5cfeb95d4d54910fddc1f5923f9"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\ops\\README.md": {
+    "mtime": 1782625364.401536,
+    "ast_hash": "5b73c869061a17df41c4fb387205c62e",
+    "semantic_hash": "5b73c869061a17df41c4fb387205c62e"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\ops\\SERVER_SETUP.md": {
+    "mtime": 1782722085.7485247,
+    "ast_hash": "bdad4d428581da5ce5dc06b090d72f8c",
+    "semantic_hash": "bdad4d428581da5ce5dc06b090d72f8c"
+  },
+  "C:\\Users\\r.saberifard\\Documents\\IT-Hisense\\dcode-website\\dcode\\seo\\keywords.txt": {
+    "mtime": 1782718240.3334167,
+    "ast_hash": "c0070b0981ee2700e2ed16d2da56590b",
+    "semantic_hash": "c0070b0981ee2700e2ed16d2da56590b"
+  }
+}
