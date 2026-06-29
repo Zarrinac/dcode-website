@@ -8,7 +8,7 @@ import ProductFamilyCard from '@/components/dcode/ProductFamilyCard';
 import SectionHeading from '@/components/dcode/SectionHeading';
 import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 import { getDcodeProductsByCategory } from '@/lib/dcode/source';
-import { categoryHref } from '@/lib/dcode/categories';
+import { categoryHref, productImageAlt } from '@/lib/dcode/categories';
 import { DCODE_BRAND } from '@/lib/dcode/brand';
 import type { Locale } from '@/i18n/routing';
 import { getLanguageAlternates, getLocaleLanguage, SITE_URL, toAbsoluteUrl } from '@/lib/seo/site';
@@ -117,7 +117,7 @@ export default async function DcodeLandingPage({ params }: PageProps) {
                   title={t('landing.tvCardTitle')}
                   description={t('landing.tvCardDescription')}
                   image={featuredTv.heroImage}
-                  imageAlt={featuredTv.copy[locale].name}
+                  imageAlt={productImageAlt(locale, featuredTv)}
                   cta={t('landing.exploreCta')}
                 />
               </StaggerItem>
@@ -130,7 +130,7 @@ export default async function DcodeLandingPage({ params }: PageProps) {
                   title={t('landing.acCardTitle')}
                   description={t('landing.acCardDescription')}
                   image={featuredAc.heroImage}
-                  imageAlt={featuredAc.copy[locale].name}
+                  imageAlt={productImageAlt(locale, featuredAc)}
                   cta={t('landing.exploreCta')}
                 />
               </StaggerItem>

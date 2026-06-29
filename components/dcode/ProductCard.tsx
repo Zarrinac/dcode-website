@@ -12,6 +12,7 @@ type ProductCardProps = {
   tagline: string;
   options: string; // e.g. '55" · 65" · 75"' or '30,000 BTU'
   image: ImageSource;
+  imageAlt: string;
   cta: string;
   light?: boolean;
   priority?: boolean;
@@ -24,6 +25,7 @@ export default function ProductCard({
   tagline,
   options,
   image,
+  imageAlt,
   cta,
   light = false,
   priority = false,
@@ -40,7 +42,7 @@ export default function ProductCard({
       >
         <Image
           src={image}
-          alt={name}
+          alt={imageAlt}
           fill
           priority={priority}
           className="object-contain p-5 transition-transform duration-500 ease-out group-hover:scale-105"
