@@ -8,6 +8,7 @@ import {
   createBreadcrumbItems,
   createBreadcrumbJsonLd,
   getLanguageAlternates,
+  getLocaleLanguage,
   SITE_URL,
 } from '@/lib/seo/site';
 import { DCODE_ROUTES } from '@/lib/dcode/routes';
@@ -235,6 +236,11 @@ export default async function FaqPage({ params }: PageProps) {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
+    name: meta.title,
+    description: meta.description,
+    url: `${SITE_URL}/${locale}${DCODE_ROUTES.faq}`,
+    inLanguage: getLocaleLanguage(locale),
+    isPartOf: { '@id': `${SITE_URL}#website` },
     mainEntity: sections
       .flatMap((s) => s.items)
       .map((item) => ({

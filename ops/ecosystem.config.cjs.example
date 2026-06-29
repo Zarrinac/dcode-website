@@ -36,10 +36,10 @@ module.exports = {
         // live media dir), NOT the public-root /dcode,/logos paths used in dev.
         NEXT_PUBLIC_CONTENT_SOURCE: 'remote',
         NEXT_PUBLIC_MEDIA_BASE_URL: '/media',
-        // Optional analytics / search-console verification:
-        // NEXT_PUBLIC_GA_ID: '',
-        // NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: '',
-        // NEXT_PUBLIC_BING_SITE_VERIFICATION: '',
+        // Analytics: NEXT_PUBLIC_GA_ID ("G-TM4KN9XCZZ") is BUILD-TIME inlined, so it must
+        // live in the server .env (read by `npm run build` in deploy.sh) — setting it in
+        // this PM2 runtime env block would NOT reach the client bundle. See SERVER_SETUP.md.
+        // Search Console = DNS TXT Domain property, Bing = import from GSC → no env tags.
       },
     },
   ],
