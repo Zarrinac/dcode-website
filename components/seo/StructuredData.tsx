@@ -6,13 +6,26 @@ import type { Locale } from '@/i18n/routing';
 // Global Organization + WebSite JSON-LD, emitted once in the locale layout. These
 // give search engines the brand entity + site identity for richer SERP treatment.
 export default function StructuredData({ locale }: { locale: Locale }) {
+  const description =
+    locale === 'fa'
+      ? "D'code (دیکد) — برند تلویزیون و کولر گازی از صنایع زرین نمای کاسپین، نماینده رسمی Hisense در ایران."
+      : "D'code — a TV and air-conditioner brand by Zarrin Nama Caspian Industries, the official Hisense representative in Iran.";
+
   const organization = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': `${SITE_URL}#organization`,
     name: DCODE_BRAND.name,
+    alternateName: ['Dcode', 'دیکد'],
     url: SITE_URL,
     logo: toAbsoluteUrl(DCODE_BRAND.logo),
+    description,
+    areaServed: 'IR',
+    parentOrganization: {
+      '@type': 'Organization',
+      name: 'Zarrin Nama Caspian Industries',
+      alternateName: 'صنایع زرین نمای کاسپین',
+    },
   };
 
   const website = {

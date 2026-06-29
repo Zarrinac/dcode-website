@@ -3,7 +3,7 @@ import Breadcrumb from '@/components/dcode/Breadcrumb';
 import ProductCard from '@/components/dcode/ProductCard';
 import Reveal from '@/components/motion/Reveal';
 import { Stagger, StaggerItem } from '@/components/motion/Stagger';
-import { productHref } from '@/lib/dcode/categories';
+import { productHref, productImageAlt } from '@/lib/dcode/categories';
 import type { SeoBreadcrumbItem } from '@/lib/seo/site';
 import type { DcodeCategory, DcodeProduct } from '@/types/dcode';
 import type { Locale } from '@/i18n/routing';
@@ -55,6 +55,7 @@ export default function ProductListView({
               tagline={product.copy[locale].tagline}
               options={product.variants.map((variant) => variant.size).join(' · ')}
               image={product.heroImage}
+              imageAlt={productImageAlt(locale, product)}
               cta={labels.viewProduct}
               priority={index === 0}
             />

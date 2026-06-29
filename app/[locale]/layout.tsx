@@ -8,6 +8,7 @@ import SiteFooter from '@/components/shell/SiteFooter';
 import StructuredData from '@/components/seo/StructuredData';
 import { DCODE_BRAND } from '@/lib/dcode/brand';
 import { SITE_URL } from '@/lib/seo/site';
+import { getSeoKeywords } from '@/lib/seo/keywords';
 import { routing, type Locale } from '@/i18n/routing';
 
 // Locale layout validates the locale, wires translations, and applies the shared
@@ -39,6 +40,11 @@ export async function generateMetadata(
     notFound();
   }
 
+  // Keywords cascade from the locale layout to every page (pages don't set their
+  // own `keywords`), so the <meta name="keywords"> is emitted site-wide.
+  const seoLocale = locale === 'fa' ? 'fa' : 'en';
+  const keywords = getSeoKeywords(seoLocale);
+
   const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
   const bingVerification = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
   const verificationOther = {
@@ -47,7 +53,11 @@ export async function generateMetadata(
 
   return {
     metadataBase: new URL(SITE_URL),
-    title: "D'code — 4K Smart LED TVs",
+    title:
+      seoLocale === 'fa'
+        ? "D'code — تلویزیون و کولر گازی هوشمند"
+        : "D'code — Smart TVs & Air Conditioners",
+    keywords,
     applicationName: DCODE_BRAND.name,
     manifest: '/site.webmanifest',
     icons: {

@@ -12,6 +12,7 @@ import Reveal from '@/components/motion/Reveal';
 import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 import SpecSheet from '@/components/dcode/SpecSheet';
 import Gallery from '@/components/dcode/Gallery';
+import { productImageAlt } from '@/lib/dcode/categories';
 import type { DcodeLocale, DcodeProduct } from '@/types/dcode';
 
 export type DcodeShowcaseLabels = {
@@ -110,7 +111,7 @@ export default function ProductShowcase({ product, locale, labels }: ProductShow
             >
               <Image
                 src={activeVariant?.image ?? product.heroImage}
-                alt={`${copy.name}${activeVariant ? ` — ${activeVariant.size}` : ''}`}
+                alt={productImageAlt(locale, product, activeVariant?.size)}
                 fill
                 priority
                 className="object-contain p-6"
@@ -240,7 +241,7 @@ export default function ProductShowcase({ product, locale, labels }: ProductShow
           <h2 className="text-xl font-bold text-(--dcode-text) sm:text-2xl">{labels.gallery}</h2>
           <Gallery
             images={product.gallery}
-            alt={copy.name}
+            alt={productImageAlt(locale, product)}
             light={isLight}
             closeLabel={labels.close}
           />

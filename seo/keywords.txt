@@ -1,0 +1,158 @@
+# D'code — SEO keyword strategy & targeting map
+#
+# HOW THIS FILE IS USED (see lib/seo/keywords.ts)
+# - Only lines starting with "- " (dash + space) are read. Headers/comments are ignored.
+# - Lines longer than 70 characters are ignored (they live here as content seeds only).
+# - The FIRST 12 Persian and FIRST 12 English entries (in file order) are emitted into
+#   <meta name="keywords"> on every page. Order = priority — keep the strongest first.
+# - REALITY CHECK: Google ignores the meta-keywords tag for ranking. The real value of
+#   this list is as a TARGETING MAP: put these phrases in <title>, <h1>/<h2>, body copy,
+#   image alt, FAQ questions, and internal-link anchor text. One primary keyword per page.
+# - SCOPE: D'code is a standalone TV + air-conditioner brand of Zarrin Nama Caspian
+#   (the official Hisense representative in Iran). These keywords are D'code- and
+#   Zarrin-Nama-Caspian-oriented ONLY — Hisense-brand keywords live in the Hisense site.
+# - Persian transliterations of "D'code": دیکد (primary), دی‌کد, دی کد.
+# - Intent legend: [brand] discovery · [info] research · [buy] purchase-intent · [service] support.
+
+
+# ============================================================
+# PRIORITY — first 12 per language (these fill the meta tag)
+# ============================================================
+
+# Persian — brand + two product pillars + lead models + company
+- دیکد
+- تلویزیون دیکد
+- کولر گازی دیکد
+- تلویزیون هوشمند دیکد
+- تلویزیون 4K دیکد
+- کولر گازی اسپلیت دیکد
+- تلویزیون دیکد سری R6D
+- کولر گازی دیکد DTEC30
+- قیمت تلویزیون دیکد
+- خرید تلویزیون دیکد
+- گارانتی دیکد
+- زرین نمای کاسپین
+
+# English — brand + two product pillars + lead models + company
+- D'code
+- Dcode TV
+- Dcode air conditioner
+- D'code smart TV
+- D'code 4K TV
+- D'code split air conditioner
+- D'code R6D TV
+- D'code DTEC30 air conditioner
+- D'code TV price Iran
+- buy D'code TV Iran
+- D'code warranty Iran
+- Zarrin Nama Caspian
+
+
+# ============================================================
+# BRAND & AUTHORITY  [brand]
+# ============================================================
+- برند دیکد
+- محصولات دیکد
+- لوازم خانگی دیکد
+- دیکد ایران
+- نمایندگی دیکد
+- نماینده رسمی دیکد
+- دی‌کد
+- دی کد
+- زرین نمای کاسپین
+- صنایع زرین نمای کاسپین
+- شرکت زرین نمای کاسپین
+- Dcode
+- D code
+- D'code Iran
+- D'code brand
+- D'code home appliances
+- D'code official dealer Iran
+- Zarrin Nama Caspian
+- Zarrin Namaye Caspian
+- Zarrin Nama Caspian Industries
+
+
+# ============================================================
+# TELEVISIONS  [buy] / [info]
+# ============================================================
+- خرید تلویزیون دیکد
+- قیمت تلویزیون دیکد
+- تلویزیون هوشمند دیکد
+- تلویزیون اندروید دیکد
+- تلویزیون 4K دیکد
+- تلویزیون LED دیکد
+- تلویزیون UHD دیکد
+- تلویزیون دیکد R6D
+- تلویزیون 55 اینچ دیکد
+- تلویزیون 65 اینچ دیکد
+- تلویزیون 75 اینچ دیکد
+- مشخصات تلویزیون دیکد
+- بهترین تلویزیون دیکد
+- تلویزیون دیکد با گارانتی
+- buy D'code TV Iran
+- D'code TV price Iran
+- D'code smart TV
+- D'code Android TV
+- D'code 4K UHD TV
+- D'code LED TV
+- D'code R6D
+- D'code 55 inch TV
+- D'code 65 inch TV
+- D'code 75 inch TV
+- D'code TV specifications
+
+
+# ============================================================
+# AIR CONDITIONERS  [buy] / [service]
+# ============================================================
+- خرید کولر گازی دیکد
+- قیمت کولر گازی دیکد
+- کولر گازی اسپلیت دیکد
+- کولر گازی دیکد DTEC30
+- کولر گازی 30000 دیکد
+- اسپلیت دیکد
+- کولر گازی دیکد با گارانتی
+- نصب کولر گازی دیکد
+- مشخصات کولر گازی دیکد
+- بهترین کولر گازی دیکد
+- buy D'code air conditioner Iran
+- D'code air conditioner price Iran
+- D'code split air conditioner
+- D'code DTEC30
+- D'code 30000 BTU air conditioner
+- D'code AC Iran
+- D'code split AC
+- D'code air conditioner specifications
+
+
+# ============================================================
+# SERVICE, WARRANTY & SUPPORT  [service]
+# ============================================================
+- گارانتی دیکد
+- ثبت گارانتی دیکد
+- خدمات پس از فروش دیکد
+- نمایندگی دیکد
+- مرکز خدمات دیکد
+- تعمیر تلویزیون دیکد
+- تعمیر کولر گازی دیکد
+- قطعات یدکی دیکد
+- شماره تماس خدمات دیکد
+- D'code warranty Iran
+- D'code warranty registration
+- D'code after sales service Iran
+- D'code service center Iran
+- D'code spare parts Iran
+- D'code customer service Iran
+
+
+# ============================================================
+# CONTENT SEEDS (over 70 chars — NOT emitted; use in copy/FAQ/H2s)
+# ============================================================
+- دیکد، برند تلویزیون و کولر گازی از صنایع زرین نمای کاسپین
+- خرید تلویزیون هوشمند دیکد سری R6D با کیفیت 4K UHD و اندروید ۱۱
+- کولر گازی اسپلیت دیکد DTEC30 با سرمایش ۳۰٬۰۰۰ BTU برای فضاهای بزرگ
+- راهنمای خرید تلویزیون دیکد در سایزهای ۵۵، ۶۵ و ۷۵ اینچ
+- D'code is a TV and air-conditioner brand by Zarrin Nama Caspian Industries
+- Buy the D'code R6D 4K UHD Android 11 smart LED TV in 55, 65 and 75 inches
+- The D'code DTEC30 split air conditioner delivers 30,000 BTU for large rooms
