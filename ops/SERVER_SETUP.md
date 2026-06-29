@@ -142,10 +142,22 @@ NEXT_PUBLIC_SITE_URL="https://dcode.co.ir"
 # "local" (the dev default) would emit public-root /dcode,/logos and 404 on the server.
 NEXT_PUBLIC_CONTENT_SOURCE="remote"
 NEXT_PUBLIC_MEDIA_BASE_URL="/media"
-NEXT_PUBLIC_GA_ID=""
+# GA4 Measurement ID (public; ships in the client bundle). Build-time inlined, so it's
+# baked by `npm run build` during deploy.sh — a runtime-only change won't take effect.
+NEXT_PUBLIC_GA_ID="G-TM4KN9XCZZ"
 ENV
 chmod 600 /var/www/dcode/app/.env
 ```
+
+> **Analytics & Search Console (already configured):** GA4 is wired through
+> `NEXT_PUBLIC_GA_ID` above — Measurement ID `G-TM4KN9XCZZ`, a property under the
+> **Zarrinac** GA account (D'code is a brand of the same company, not a separate
+> account). The `Analytics` component auto-injects gtag whenever the var is set.
+> Search Console ownership is a **DNS TXT Domain property** for `dcode.co.ir` (covers
+> www + non-www / http + https; no meta tag or redeploy needed), and **Bing** is
+> verified by _importing from GSC_ — so no `*_SITE_VERIFICATION` env vars are needed.
+> Because `NEXT_PUBLIC_GA_ID` is build-time inlined, changing it requires a redeploy
+> (`deploy.sh` rebuilds), not just a runtime env edit.
 
 > **Media path gotcha (cost an hour the first time):** with `remote`, runtime images
 > resolve as `/media/*`, but the **catalog DB also has `/dcode/*` and `/logos/*` baked
