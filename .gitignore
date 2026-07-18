@@ -73,3 +73,6 @@ next-env.d.ts
 # committed.
 /public/sitemap*.xml
 /public/robots.txt
+
+# graphify knowledge-graph output (generated, not committed)
+/graphify-out/
