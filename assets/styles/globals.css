@@ -2,6 +2,9 @@
    The whole site themes off the D'code black/red palette; individual /tvs sections
    further scope their own tokens via DCODE_THEME_STYLE. */
 @import 'tailwindcss';
+/* public/ holds symlinks to the media store outside the repo on the server (media, logos, dcode/*); Tailwind
+   must not scan them (Next 16.4 Turbopack rejects loader paths outside the project root). */
+@source not "../../public";
 
 :root {
   --dcode-black: #0b0b0b;
