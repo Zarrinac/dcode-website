@@ -205,3 +205,7 @@ Rules:
 - If graphify-out/wiki/index.md exists, use it for broad navigation instead of raw source browsing.
 - Read graphify-out/GRAPH_REPORT.md only for broad architecture review.
 - After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).
+
+## Build gotcha: Tailwind must not scan `public/` symlinks (2026-11-14)
+
+On the server `public/media`, `public/logos` and `public/dcode/{ac,icons,led}` are symlinks to `/var/www/dcode/media`, outside the repo. Next 16.4 Turbopack rejects loader paths outside the project root and Tailwind v4 auto-scans non-ignored files, so the build failed with `... is outside configured roots` (and a failed `next build` wipes `.next`). `assets/styles/globals.css` therefore has `@source not "../../public";`. Keep it; any new symlink under `public/` is covered.
